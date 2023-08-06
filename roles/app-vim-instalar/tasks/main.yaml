@@ -2,7 +2,7 @@
 
 - name: Instala o Vim
   ansible.builtin.apt: 
-    update_cache: yes
+    update_cache: true
     name:
       - vim 
     state: present

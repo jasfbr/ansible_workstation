@@ -2,7 +2,7 @@
 
 - name: instala o Terminator
   ansible.builtin.apt: 
-    update_cache: yes
+    update_cache: true
     name:
       - terminator 
     state: present

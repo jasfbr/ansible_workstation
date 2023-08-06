@@ -5,7 +5,7 @@
 
   - name: Instala as dependências
     ansible.builtin.apt: 
-      update_cache: yes
+      update_cache: true
       name: default-jdk
       state: present
     become: true

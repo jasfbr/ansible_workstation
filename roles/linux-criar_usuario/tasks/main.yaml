@@ -2,7 +2,7 @@
 
 - name: Instala passlib
   ansible.builtin.apt: 
-    update_cache: yes
+    update_cache: true
     name:
       - python3-passlib
     state: present
@@ -25,7 +25,7 @@
     group: '{{user.group}}'
     groups: '{{user.groups}}'
     shell: /bin/bash
-    append: yes
+    append: true
     state: present
   become: true
 

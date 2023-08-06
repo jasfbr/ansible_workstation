@@ -5,7 +5,7 @@
 
     - name: Instala as dependências (openjdk8)
       ansible.builtin.apt: 
-        update_cache: yes
+        update_cache: true
         name: openjdk-8-jdk
         state: present
       become: true

@@ -24,6 +24,17 @@ sftp://srv-hp-cofre/home/jose.fernandes
 # TODO: Instalação e configuração do Synergy
 # TODO: Instalação e configuração do FreeCad
 # TODO: Instalação e configuração da VPN (prodepa)
+
+apt install -y network-manager-vpnc-gnome
+apt install -y network-manager-openvpn-gnome
+
+logout 
+
+https://askubuntu.com/questions/135787/gray-button-for-saving-editing-vpn-connection-in-network-manager
+
+/etc/NetworkManager/system-connections
+
+
 # TODO: Configurar o screensaver e o LockScreen
 
 # TODO: Configurar o prompt do terminal

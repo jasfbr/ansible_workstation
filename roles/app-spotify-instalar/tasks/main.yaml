@@ -21,6 +21,6 @@
       name: spotify-client
       state: present
 
-  become: yes
+  become: true
 
 ...

@@ -2,7 +2,7 @@
 
 - name: Instação de pacotes padrões
   ansible.builtin.apt: 
-    update_cache: yes
+    update_cache: true
     name:
       - openssh-server 
       - ntp 

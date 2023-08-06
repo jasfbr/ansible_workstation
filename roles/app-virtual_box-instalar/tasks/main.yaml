@@ -19,7 +19,7 @@
       
     - name: instala o Virtual Box
       ansible.builtin.apt: 
-        update_cache: yes
+        update_cache: true
         name: virtualbox-7.0
         state: present
       become: true

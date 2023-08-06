@@ -18,7 +18,7 @@
 
     - name: instala o DBeaver
       ansible.builtin.apt: 
-        update_cache: yes
+        update_cache: true
         name:
           - default-jdk
           - dbeaver-ce
