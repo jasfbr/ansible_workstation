@@ -1,0 +1,21 @@
+---
+
+- name: Instala as dependências
+  ansible.builtin.apt:
+    update_cache: true
+    name: 
+      - network-manager-vpnc-gnome
+    state: present
+  become: true
+
+- name: Configurar a vpn
+  ansible.builtin.template:
+    src: ../templates/prodepa.nmconnection
+    dest: /etc/NetworkManager/system-connections/prodepa.nmconnection
+    mode: '0600'
+    owner: root
+    group: root
+  notify: reiniciar_NetworkManager
+  become: true
+
+...

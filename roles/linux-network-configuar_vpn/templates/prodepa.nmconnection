@@ -1,0 +1,34 @@
+[connection]
+id=prodepa
+uuid=48ab9ec1-45fc-48da-8b0c-90025968d967
+type=vpn
+autoconnect=false
+interface-name=tun0
+
+[vpn]
+Domain={{vpn_domain}}
+IKE DH Group=dh2
+IPSec ID={{vpn_group}}
+IPSec secret={{vpn_group_pass}}
+IPSec gateway={{vpn_domain}}
+IPSec secret-flags=0
+Local Port=0
+NAT Traversal Mode=natt
+Perfect Forward Secrecy=server
+Vendor=cisco
+Xauth password-flags=0
+Xauth username={{vpn_user_login}}
+Xauth password={{vpn_user_pass}}
+ipsec-secret-type=save
+xauth-password-type=save
+service-type=org.freedesktop.NetworkManager.vpnc
+
+[ipv4]
+method=auto
+
+[ipv6]
+addr-gen-mode=stable-privacy
+method=auto
+
+[proxy]
+method=1

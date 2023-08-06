@@ -16,5 +16,12 @@ vault_tipo_estacao: 'desktop'
 # linux-restaura_backup
 vault_path_to_backup: 
 
-# app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
+# app-apache_directory_studio-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-apache_jmeter-instalar
 vault_path_to_downloads: 
+
+# linux-network-configurar_vpn
+vpn_domain: 
+vpn_user_login: 
+vpn_user_pass: 
+vpn_group: 
+vpn_group_pass: 

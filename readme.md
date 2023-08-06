@@ -212,6 +212,7 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/include_task
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/stat_module.html
 https://docs.ansible.com/ansible/latest/collections/ansible/builtin/replace_module.html
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_service_module.html
 
 https://docs.ansible.com/ansible/latest/collections/community/general/alternatives_module.html
 https://docs.ansible.com/ansible/latest/collections/community/general/xfconf_module.html
