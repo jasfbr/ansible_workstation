@@ -1,0 +1,28 @@
+---
+
+- name: Instala e configura o Dbeaver
+  block:
+
+    - name: adiciona a chave do repositório
+      ansible.builtin.get_url:
+        url: https://dbeaver.io/debs/dbeaver.gpg.key
+        dest: /etc/apt/keyrings/dbeaver.gpg.key
+      become: true
+
+    - name: adiciona o repositório
+      ansible.builtin.apt_repository:
+        repo: 'deb [signed-by=/etc/apt/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /'
+        filename: dbeaver-ce
+        state: present
+      become: true
+
+    - name: instala o DBeaver
+      ansible.builtin.apt: 
+        update_cache: yes
+        name:
+          - default-jdk
+          - dbeaver-ce
+        state: present
+      become: true
+
+...

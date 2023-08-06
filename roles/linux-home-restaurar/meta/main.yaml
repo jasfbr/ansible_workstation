@@ -1,0 +1,7 @@
+---
+
+dependencies:
+  - linux-home-configurar
+  - linux-home-configurar_painel
+
+...

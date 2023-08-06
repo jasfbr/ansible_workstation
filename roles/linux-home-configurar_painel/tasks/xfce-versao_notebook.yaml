@@ -1,0 +1,53 @@
+---
+
+- name: Configurar o reiniciar_painel
+  block:
+  - name: Configura os itens do painel
+    community.general.xfconf: channel='{{item.channel}}' property='{{item.property}}' value_type='{{item.value_type}}' value='{{item.value}}' state='{{item.state}}'
+    with_items:
+      # whiskermenu
+      # separator
+      # tasklist
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-3/grouping', value_type: 'uint', value: '0', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-3/show-labels', value_type: 'bool', value: 'false', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-3/show-wireframes', value_type: 'bool', value: 'false', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-3/sort-order', value_type: 'uint', value: '4', state: 'present'}
+      # separator
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-4/expand', value_type: 'bool', value: 'false', state: 'present'}
+      # systray
+      # notification-plugin
+      # substitui o indicator por um separtor
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-7', value_type: 'string', value: 'separator', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-7/expand', value_type: 'bool', value: 'false', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-7/style', value_type: 'uint', value: '0', state: 'present'}
+      # power-manager-plugin
+      # - {channel: 'xfce4-panel', property: '/plugins/plugin-8', value_type: 'string', value: 'power-manager-plugin', state: 'absent'}
+      # pulseaudio
+      # clock
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-10/digital-format', value_type: 'string', value: '%H:%M', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-10/mode', value_type: 'uint', value: '2', state: 'present'}
+      #- {channel: 'xfce4-panel', property: '/plugins/plugin-10/tooltip-format', value_type: 'string', value: '%A %Y-%m-%d', state: 'present'}
+      # pager (Workspace Switcher)
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-11', value_type: 'string', value: 'pager', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-11/miniature-view', value_type: 'bool', value: 'true', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-11/rows', value_type: 'uint', value: '2', state: 'present'}
+      # places
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-12', value_type: 'string', value: 'places', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-12/show-recent', value_type: 'bool', value: 'false', state: 'present'}
+      # showdesktop
+      - {channel: 'xfce4-panel', property: '/plugins/plugin-13', value_type: 'string', value: 'showdesktop', state: 'present'}
+      # painel
+      - {channel: 'xfce4-panel', property: '/panels/panel-0/mode', value_type: 'int', value: '2', state: 'present'}
+      - {channel: 'xfce4-panel', property: '/panels/panel-0/size', value_type: 'int', value: '38', state: 'present'}
+
+  - name: Ordena os itens do painel
+    community.general.xfconf:
+      channel: 'xfce4-panel'
+      property: '/panels/panel-0/plugin-ids'
+      value_type: 'int'
+      value: ['1', '10', '2', '11', '12', '13', '5', '4', '9', '6', '8', '7', '3']
+      force_array: true
+
+  notify: reiniciar_painel
+
+...

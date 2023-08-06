@@ -1,0 +1,32 @@
+---
+
+- name: Instala passlib
+  ansible.builtin.apt: 
+    update_cache: yes
+    name:
+      - python3-passlib
+    state: present
+  become: true
+
+- name: Cria o grupo '{{user.group}}'
+  ansible.builtin.group:
+    name: '{{user.group}}'
+    gid: '{{user.guid}}'
+    state: present
+  become: true
+
+- name: Cria o usuário {{user.login}}
+  ansible.builtin.user:
+    name: '{{user.login}}'
+    comment: '{{user.comment}}'
+    uid: '{{user.uid}}'
+    password: "{{vault_user_password | password_hash('sha512')}}"
+    update_password: on_create
+    group: '{{user.group}}'
+    groups: '{{user.groups}}'
+    shell: /bin/bash
+    append: yes
+    state: present
+  become: true
+
+...

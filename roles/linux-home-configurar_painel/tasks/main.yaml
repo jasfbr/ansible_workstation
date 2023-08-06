@@ -1,0 +1,7 @@
+---
+
+- name: 'Seleciona a configuração: {{current_desktop}}, {{tipo_estacao}}'
+  ansible.builtin.include_tasks: 
+    file: '{{current_desktop}}-versao_{{tipo_estacao}}.yaml'
+
+...

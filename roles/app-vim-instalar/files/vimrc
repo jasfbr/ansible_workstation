@@ -1,0 +1,5 @@
+set mouse=v
+syntax on 
+set showmode  
+set tabstop=2
+set shiftwidth=2

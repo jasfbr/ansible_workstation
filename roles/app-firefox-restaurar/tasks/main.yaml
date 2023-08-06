@@ -1,0 +1,12 @@
+---
+
+- name: restaura o diretório .mozilla
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/{{user.login}}/.mozilla/'
+    dest: '/home/{{user.login}}/.mozilla/'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

@@ -1,0 +1,50 @@
+---
+
+# TODO: Adicionar opção para gerar chaves novas ou restaurar do backup
+
+# Minhas configurações padrões
+- name: Altera o alias ll
+  ansible.builtin.lineinfile:
+    path: '/home/{{user.login}}/.bashrc'
+    search_string: "alias ll='ls -alF'"
+    line: "alias ll='ls -lF'"
+    backup: true
+    state: present
+  notify: 
+    - reiniciar_bashrc
+
+- name: Aumenta o número de workspaces
+  community.general.xfconf:
+    channel: 'xfwm4'
+    property: '/general/workspace_count'
+    value_type: 'int'
+    value: '4'
+
+- name: Define onde o painel vai aparecer (monitores)
+  community.general.xfconf:
+    channel: 'xfce4-panel'
+    property: '/panels/panel-0/output-name'
+    value_type: 'string'
+    value: 'Primary'
+
+- name: 'Configura os ícones do desktop'
+  community.general.xfconf:
+    channel: 'xfce4-desktop'
+    property: '/desktop-icons/file-icons/show-home'
+    value_type: 'bool'
+    value: false
+
+- name: 'Configura o prompt de comando'
+  ansible.builtin.replace:
+    path: '/home/{{user.login}}/.bashrc'
+    after: 'if [ "$color_prompt" = yes ]; then'
+    before: 'unset color_prompt force_color_prompt'
+    regexp: '\\w\\'
+    replace: '\W\'
+
+- name: cria o diretório .local/share/applications se não existir
+  ansible.builtin.file:
+    path: /home/{{user.login}}/.local/share/applications
+    state: directory
+
+...

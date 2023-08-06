@@ -1,0 +1,7 @@
+---
+
+- name: reiniciar_painel
+  ansible.builtin.shell:
+    cmd: xfce4-panel --restart
+
+...

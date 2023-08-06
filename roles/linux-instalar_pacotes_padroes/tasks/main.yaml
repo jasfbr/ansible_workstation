@@ -1,0 +1,29 @@
+---
+
+- name: Instação de pacotes padrões
+  ansible.builtin.apt: 
+    update_cache: yes
+    name:
+      - openssh-server 
+      - ntp 
+      - net-tools
+      - git
+      - synaptic
+      - pdfarranger
+      # Language Support
+      - hunspell-en-gb
+      - hunspell-en-za
+      - libreoffice-help-en-gb
+      - thunderbird-locale-en-gb
+      - hunspell-en-au
+      - hyphen-en-ca
+      - libreoffice-l10n-en-za
+      - hyphen-en-gb
+      - mythes-en-au
+      - hunspell-en-ca
+      - libreoffice-l10n-en-gb
+      - libreoffice-help-en-us
+    state: present
+  become: true
+
+...

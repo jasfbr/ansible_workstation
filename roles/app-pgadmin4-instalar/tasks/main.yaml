@@ -1,0 +1,38 @@
+---
+
+- name: Instala e configura o PgAdmin4
+  block:
+
+    - name: adiciona a chave do repositório
+      ansible.builtin.get_url:
+        url: https://www.pgadmin.org/static/packages_pgadmin_org.pub
+        dest: /etc/apt/keyrings/packages_pgadmin_org.pub
+      become: true
+
+    - name: adiciona o repositório
+      ansible.builtin.apt_repository:
+        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/packages_pgadmin_org.pub] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/{{ansible_distribution_release}} pgadmin4 main'
+        filename: pgadmin4
+        state: present
+      become: true
+      
+    - name: instala o PgAdmin4
+      ansible.builtin.apt: 
+        update_cache: yes
+        name: pgadmin4
+        state: present
+      become: true
+
+    - name: Cria o diretório /etc/pgadmin
+      ansible.builtin.file:
+        path: /etc/pgadmin
+        state: directory
+      become: true
+
+    - name: Configuração do PgAdmin4
+      ansible.builtin.template:
+        src: ../templates/config_system.py
+        dest: /etc/pgadmin/config_system.py
+      become: true
+
+...

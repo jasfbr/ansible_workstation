@@ -1,0 +1,20 @@
+# Ansible
+ansible_become_pass: 
+
+# Credenciais do novo usuário
+vault_user_login: 
+vault_user_password: 
+vault_user_comment: 
+vault_user_uid: 
+vault_user_group: 
+vault_user_guid: 
+vault_user_groups: 
+
+# linux-configura_painel
+vault_tipo_estacao: 'desktop'
+
+# linux-restaura_backup
+vault_path_to_backup: 
+
+# app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
+vault_path_to_downloads: 

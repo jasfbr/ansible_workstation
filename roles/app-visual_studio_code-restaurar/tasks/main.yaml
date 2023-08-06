@@ -1,0 +1,12 @@
+---
+
+- name: restaura o diretório .config/Code
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/jose.fernandes/.config/Code/'
+    dest: /home/{{user.login}}/.config/Code/
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

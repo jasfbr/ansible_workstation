@@ -1,0 +1,26 @@
+---
+
+- name: Instala e configura o spotify client
+  block:
+
+  - name: Adiciona a chave do repositório
+    ansible.builtin.apt_key:
+      url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
+      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
+      state: present
+
+  - name: Adiciona o repositório
+    ansible.builtin.apt_repository:
+      repo: 'deb [signed-by=/etc/apt/trusted.gpg.d/spotify.gpg] http://repository.spotify.com stable non-free'
+      filename: spotify.list
+      state: present
+
+  - name: Instala o spotify-client
+    ansible.builtin.apt:
+      update_cache: true
+      name: spotify-client
+      state: present
+
+  become: yes
+
+...

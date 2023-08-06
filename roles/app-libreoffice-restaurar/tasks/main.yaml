@@ -1,0 +1,12 @@
+---
+
+- name: restaura o diretório .config/libreoffice
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/jose.fernandes/.config/libreoffice/'
+    dest: /home/{{user.login}}/.config/libreoffice/
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

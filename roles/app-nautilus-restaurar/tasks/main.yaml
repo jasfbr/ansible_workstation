@@ -1,0 +1,12 @@
+---
+
+- name: restaura o diretório .config/nautilus
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/{{user.login}}/.config/nautilus/'
+    dest: '/home/{{user.login}}/.config/nautilus/'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

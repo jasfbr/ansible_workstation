@@ -1,0 +1,12 @@
+---
+
+- name: restaura o diretório .config/google-chrome
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/{{user.login}}/.config/google-chrome/'
+    dest: '/home/{{user.login}}/.config/google-chrome/'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

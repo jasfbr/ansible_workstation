@@ -1,0 +1,34 @@
+---
+
+- name: Instala e configura o Aqua Data Studio
+  block:
+
+    - name: Cria a pasta /opt/aquafold
+      ansible.builtin.file:
+        path: /opt/aquafold
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+        mode: '0755'
+        state: directory 
+      become: true
+
+    - name: Descompacta o pacote datastudio-16.0.5-9.tar-bz2
+      ansible.builtin.unarchive:
+        src: '{{path_to_downloads}}/sgbd/aquafold/datastudio-16.0.5-9.tar.bz2'
+        dest: '/opt/aquafold'
+        copy: false 
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+
+    - name: configura o item de menu do Aqua Data Studio (Launcher)
+      ansible.builtin.template:
+        src: ../../comum/templates/menulibre-template.desktop
+        dest: /home/{{user.login}}/.local/share/applications/menulibre-aqua-data-studio.desktop
+      vars:
+        app: 
+          name: 'Aqua Data Studio'
+          comment: ''
+          icon: '/opt/aquafold/datastudio-16.0.5-9/datastudio-24x24.png'
+          exec: '/opt/aquafold/datastudio-16.0.5-9/datastudio.sh'
+
+...

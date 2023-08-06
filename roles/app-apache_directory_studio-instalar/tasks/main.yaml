@@ -1,0 +1,67 @@
+---
+
+- name: Instala e configura o Apache Directory Studio
+  block:
+
+  - name: Instala as dependências
+    ansible.builtin.apt: 
+      update_cache: yes
+      name: default-jdk
+      state: present
+    become: true
+
+  - name: Baixa o aquivo compactado
+    block:
+
+    - name: Verifica se o arquivo existe
+      ansible.builtin.stat:
+        path: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+      register: file_status
+
+    - name: Cria o diretório '{{path_to_downloads}}/apache/apache_directory_studio'
+      ansible.builtin.file:
+        path: '{{path_to_downloads}}/apache/apache_directory_studio'
+        state: directory
+        recurse: true
+      when: not file_status.stat.exists
+
+    - name: Baixa o arquivo
+      ansible.builtin.get_url:
+        url: 'https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz'
+        dest: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+        decompress: false
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+        mode: '0644'
+      when: not file_status.stat.exists
+
+  - name: Cria a pasta /opt/apache
+    ansible.builtin.file:
+      path: /opt/apache
+      owner: '{{user.login}}'
+      group: '{{user.group}}'
+      mode: '0755'
+      state: directory 
+    become: true
+
+  - name: Descompacta o pacote ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz
+    ansible.builtin.unarchive:
+      src: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+      dest: /opt/apache
+      copy: false 
+      owner: '{{user.login}}'
+      group: '{{user.group}}'
+    become: true
+
+  - name: Configura o item de menu do Apache Directory Studio (Launcher)
+    ansible.builtin.template:
+      src: ../../comum/templates/menulibre-template.desktop
+      dest: /home/{{user.login}}/.local/share/applications/menulibre-apache-directory-studio.desktop
+    vars:
+      app: 
+        name: 'Apache Directory Studio'
+        comment: ''
+        icon: /opt/apache/ApacheDirectoryStudio/icon.xpm
+        exec: /opt/apache/ApacheDirectoryStudio/ApacheDirectoryStudio
+
+...

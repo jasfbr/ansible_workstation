@@ -1,0 +1,46 @@
+---
+
+- name: Remove o snap firefox 
+  ansible.builtin.snap:
+    name:
+      - firefox
+  become: true
+
+- name: Adiciona o repositório
+  ansible.builtin.apt_repository:
+    repo: 'ppa:mozillateam/ppa'
+    state: present
+  become: true
+
+- name: Define a prioridade dos repositórios
+  ansible.builtin.template:
+    src: ../templates/mozilla-firefox
+    dest: /etc/apt/preferences.d/mozilla-firefox
+  become: true 
+
+- name: Configura o repositório 
+  ansible.builtin.template:
+    src: ../templates/51unattended-upgrades-firefox
+    dest: /etc/apt/apt.conf.d/51unattended-upgrades-firefox
+  become: true
+
+- name: 'Instala o Firefox'
+  ansible.builtin.apt:
+    update_cache: true
+    name: 
+      - firefox 
+    state: present 
+  become: true
+
+- name: 'Configura o Firefox como Navegador padrão'
+  ansible.builtin.lineinfile:
+    path: /home/{{user.login}}/.config/xfce4/helpers.rc
+    regexp: '^WebBrowser'
+    line: 'WebBrowser=firefox'
+    state: present 
+    create: true
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  become: true
+
+...

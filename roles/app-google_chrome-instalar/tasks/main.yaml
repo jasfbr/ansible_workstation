@@ -1,0 +1,36 @@
+---
+
+- name: Instala e configura o Google Chrome
+  block:
+
+  - name: Baixa o aquivo deb
+    block:
+
+    - name: Verifica se o arquivo já foi baixado
+      ansible.builtin.stat:
+        path: '{{path_to_downloads}}/google/chrome/google-chrome-stable_current_amd64.deb'
+      register: file_status
+
+    - name: Cria o diretório '{{path_to_downloads}}/google/chrome'
+      ansible.builtin.file:
+        path: '{{path_to_downloads}}/google/chrome'
+        state: directory
+        recurse: true
+      when: not file_status.stat.exists
+
+    - name: Baixa o arquivo
+      ansible.builtin.get_url:
+        url: 'https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb'
+        dest: '{{path_to_downloads}}/google/chrome/google-chrome-stable_current_amd64.deb'
+        decompress: false
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+        mode: '0644'
+      when: not file_status.stat.exists
+
+  - name: instala o Google Chrome
+    ansible.builtin.apt: 
+      deb: '{{path_to_downloads}}/google/chrome/google-chrome-stable_current_amd64.deb'
+    become: true
+
+...

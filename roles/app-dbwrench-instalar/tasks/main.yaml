@@ -1,0 +1,77 @@
+---
+
+- name: Instala e configura o DbWrench
+  block:
+
+    - name: Instala as dependências (openjdk8)
+      ansible.builtin.apt: 
+        update_cache: yes
+        name: openjdk-8-jdk
+        state: present
+      become: true
+
+    - name: Baixa o aquivo compactado
+      block:
+
+        - name: Verifica se o arquivo existe
+          ansible.builtin.stat:
+            path: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+          register: file_status
+  
+        - name: Baixa o arquivo
+          ansible.builtin.get_url:
+            url: 'https://dbwrench.com/download/files/v4/dbwrench.zip'
+            dest: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+            decompress: false
+            owner: '{{user.login}}'
+            group: '{{user.group}}'
+            mode: '0644'
+          when: not file_status.stat.exists
+
+    - name: Cria a pasta /opt/nizana
+      ansible.builtin.file:
+        path: /opt/nizana
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+        mode: '0755'
+        state: directory 
+      become: true
+
+    - name: Descompacta o pacote apache-jmeter-5.6.2.tgz
+      ansible.builtin.unarchive:
+        src: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+        dest: /opt/nizana
+        copy: false 
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+      become: true
+
+    - name: Configura o java (dbwrench.conf)
+      ansible.builtin.lineinfile:
+        path: /opt/nizana/dbwrench/etc/dbwrench.conf
+        search_string: 'jdkhome'
+        line: 'jdkhome="/usr/lib/jvm/java-8-openjdk-amd64/jre"'
+        state: present 
+      become: true
+
+    - name: Copia icones e txt para a pasta /opt/nizana/dbwrench
+      ansible.builtin.copy:
+        src: '../files/'
+        dest: '/opt/nizana/dbwrench/'
+        mode: '0644'
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+      become: true
+
+    - name: Configura o item de menu do Dbwrench (Launcher)
+      ansible.builtin.template:
+        src: ../../comum/templates/menulibre-template.desktop
+        dest: /home/{{user.login}}/.local/share/applications/menulibre-dbwrench.desktop
+      vars:
+        app: 
+          name: 'DbWrench'
+          comment: ''
+          icon: '/opt/nizana/dbwrench/dbwrench.png'
+          exec: '/opt/nizana/dbwrench/bin/dbwrench'
+
+...

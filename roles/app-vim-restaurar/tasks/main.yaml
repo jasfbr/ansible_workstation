@@ -1,0 +1,12 @@
+---
+
+- name: restaura o arquivo .vimrc
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/{{user.login}}/.vimrc'
+    dest: '/home/{{user.login}}/.vimrc'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

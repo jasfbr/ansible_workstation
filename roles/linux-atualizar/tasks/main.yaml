@@ -1,0 +1,10 @@
+---
+
+- name: Atualização do S.O.
+  ansible.builtin.apt: 
+    update_cache: true 
+    upgrade: true
+    autoremove: true
+  become: true
+
+...

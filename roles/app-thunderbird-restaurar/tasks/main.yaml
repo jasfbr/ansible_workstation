@@ -1,0 +1,24 @@
+---
+
+- name: Cria o diretório /u01/aplicativos
+  ansible.builtin.file:
+    path: /u01/aplicativos
+    state: directory
+    recurse: true
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  become: true
+
+- name: restaura os diretórios do Thunderbird
+  ansible.builtin.copy:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  with_items:
+    - {src: '{{path_to_backup}}/home/{{user.login}}/.thunderbird/', dest: '/home/{{user.login}}/.thunderbird/'}
+    - {src: '{{path_to_backup}}/u01/aplicativos/thunderbird/', dest: '/u01/aplicativos/thunderbird/'}
+
+...

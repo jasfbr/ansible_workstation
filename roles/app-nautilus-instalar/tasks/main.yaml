@@ -1,0 +1,24 @@
+---
+
+# TODO: Verificar se o git está instalado para instalar o rabbitvcs-nautilus 
+
+- name: instala o Nautilus e o rabbitvcs
+  ansible.builtin.apt: 
+    update_cache: yes
+    name:
+      - nautilus 
+      - rabbitvcs-nautilus 
+    state: present
+  become: true
+
+- name: configura o nautilus como gerenciador de arquivos padrão no Xfce
+  ansible.builtin.lineinfile:
+    path: /home/{{user.login}}/.config/xfce4/helpers.rc
+    regexp: '^FileManager'
+    line: 'FileManager=nautilus'
+    state: present 
+    create: true
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

@@ -1,0 +1,50 @@
+Falta fazer:
+
+# TODO: Instalar e configurar a impressora
+smb://REDE/SRVPRINT/KM3655DDS
+Kyocera ECOSYS KM3655idn (KPDL)
+
+apt install smbclient
+
+# TODO: Configurar "Sort Folders before files " no nautilus
+
+# TODO: Configurar os mapeamentos no nautilus
+Crtl + L para poder digital/colar o endereço
+sftp://srv-hp-cofre/
+smb://10.1.2.10/prodepa/a_geral/digitalizacao/dig_dds
+sftp://srv-hp-cofre/home/jose.fernandes
+
+# TODO: Instalação e configuração do Nomachine
+# TODO: Instalação e configuração do Anydesk
+# TODO: Instalação e configuração do SoapUI
+# TODO: Instalação do VmWare Remote Console
+# TODO: Instalação e configuração do BitTorrent
+# TODO: Instalação e configuração do VLC media player
+
+# TODO: Instalação e configuração do Synergy
+# TODO: Instalação e configuração do FreeCad
+# TODO: Instalação e configuração da VPN (prodepa)
+# TODO: Configurar o screensaver e o LockScreen
+
+# TODO: Configurar o prompt do terminal
+https://vitux.com/how-to-customize-ubuntu-bash-prompt/
+
+if [ "$color_prompt" = yes ]; then
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+else
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+fi
+
+https://docs.ansible.com/ansible/latest/collections/ansible/builtin/lineinfile_module.html
+
+# TODO: Configurar Whisker Menu
+Recently used:
+  desmarcar Include favorites (favorites-in-recent)
+
+# TODO: Configurar Desktop
+  Background
+    xfconf-query -c xfce4-desktop -p /backdrop/screen0/monitor0/image-path -v
+  Icons
+    xfconf-query -c xfce4-desktop -p /desktop-icons/file-icons/show-home -v bool
+    xfconf-query -c xfce4-desktop -p /desktop-icons/file-icons/show-trash -v
+    xfconf-query -c xfce4-desktop -p /desktop-icons/file-icons/show-filesystem -v

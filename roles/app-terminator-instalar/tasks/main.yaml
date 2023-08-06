@@ -1,0 +1,29 @@
+---
+
+- name: instala o Terminator
+  ansible.builtin.apt: 
+    update_cache: yes
+    name:
+      - terminator 
+    state: present
+  become: true
+
+- name: Configura o Terminator como emulador de terminal padrão de linha de commando
+  community.general.alternatives:
+    name: x-terminal-emulator
+    path: /usr/bin/terminator
+    state: present
+  become: true
+
+- name: configura o Terminator como emulador de terminal padrão no Xfce
+  ansible.builtin.lineinfile:
+    path: /home/{{user.login}}/.config/xfce4/helpers.rc
+    regexp: '^TerminalEmulator'
+    line: 'TerminalEmulator=terminator'
+    state: present 
+    create: true
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  become: true
+
+...

@@ -1,0 +1,60 @@
+---
+
+- name: restaura o /etc/hosts
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/etc/hosts'
+    dest: /etc/hosts
+    mode: preserve
+    owner: root
+    group: root
+  become: true
+
+- name: Restaura a chave do usuário
+  block:
+
+  - name: copia as chaves
+    ansible.builtin.copy:
+      src: '{{path_to_backup}}/home/{{user.login}}/.ssh/'
+      dest: '/home/{{user.login}}/.ssh/'
+      owner: '{{user.login}}'
+      group: '{{user.group}}'
+      mode: 0600
+
+  - name: Altera as permissões da pasta .ssh 
+    ansible.builtin.file:
+      path: '/home/{{user.login}}/.ssh/'
+      owner: '{{user.login}}' 
+      group: '{{user.group}}'
+      mode: 0700 
+      state: directory 
+
+- name: 'Configura o background'
+  block:
+
+  - name: 'Cria o diretório /u01/aplicativos/background'
+    ansible.builtin.file:
+      path: /u01/aplicativos/background
+      state: directory
+      recurse: true
+      owner: '{{user.login}}'
+      group: '{{user.group}}'
+    become: true
+
+  - name: 'Restaura o arquivo /u01/aplicativos/background/56014-1.jpg'
+    ansible.builtin.copy:
+      src: '{{path_to_backup}}/u01/aplicativos/background/56014-1.jpg'
+      dest: '/u01/aplicativos/background/56014-1.jpg'
+      local_follow: false
+      mode: preserve
+      owner: '{{user.login}}'
+      group: '{{user.group}}'
+
+  - name: 'Configura a imagem de backgrund do desktop'
+    community.general.xfconf: 
+      channel: 'xfce4-desktop'
+      property: '/backdrop/screen0/monitor0/image-path'
+      value_type: 'string'
+      value: '/u01/aplicativos/background/56014-1.jpg'
+  when: restaurar_backup
+
+...

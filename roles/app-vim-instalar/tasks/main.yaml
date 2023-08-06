@@ -1,0 +1,27 @@
+---
+
+- name: Instala o Vim
+  ansible.builtin.apt: 
+    update_cache: yes
+    name:
+      - vim 
+    state: present
+  become: true
+
+- name: Configura o vim como o editor padrão de linha de commando
+  community.general.alternatives:
+    name: editor
+    path: /usr/bin/vim.basic
+    state: selected
+  become: true
+
+- name: Configura as preferências do vim (.vimrc)
+  ansible.builtin.copy:
+    src: vimrc
+    dest: /home/{{user.login}}/.vimrc
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+
+...

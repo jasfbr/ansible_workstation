@@ -1,0 +1,14 @@
+# ansible-playbook -e@tmp/vault-notebook-ansible.yaml playbook-root.yaml --syntax-check
+# Antes de executar, criar um arquivo vault de acordo com o modelo: vault-modelo.yaml
+---
+
+- name: Configurar o desktop
+  hosts: localhost 
+
+  roles:
+  - linux-atualizar
+  - linux-instalar_pacotes_padroes    
+  - linux-tunning
+  - linux-criar_usuario
+
+...

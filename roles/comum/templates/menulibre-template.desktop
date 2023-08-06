@@ -1,0 +1,9 @@
+[Desktop Entry]
+Version=1.1
+Type=Application
+Name={{ app.name }}
+Comment={{ app.comment }}
+Icon={{ app.icon }}
+Exec={{ app.exec }}
+Actions=
+Categories=Development;X-XFCE;X-Xfce-Toplevel;

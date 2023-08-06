@@ -1,0 +1,25 @@
+---
+
+# swappiness: Controla como o kernel realiza as trocas de cache na RAM. Ao aumentar esse valor, aumentará a quantidade de trocas. 
+#             O valor padrão é 60, colocando 10 significa que a Swap só será usada quando a RAM atingir 90%.
+- name: Configurando swappiness
+  ansible.posix.sysctl:
+    name: vm.swappiness
+    value: 10
+    state: present
+    sysctl_file: /etc/sysctl.conf
+    reload: true
+  become: true
+
+# vfs_cache_pressure: Controla a tendência do kernel para recuperar a memória que é usada no cache do sistema virtual de arquivos. 
+#                     O valor 50 é o ideal, valores mais altos podem deixar o sistema lento e muito baixos reduzem o uso do cache.
+- name: Configurando vfs_cache_pressure
+  ansible.posix.sysctl:
+    name: vm.vfs_cache_pressure
+    value: 50
+    state: present
+    sysctl_file: /etc/sysctl.conf
+    reload: true
+  become: true
+
+...
