@@ -7,7 +7,11 @@ Desta forma, temos 2 versões de configuração: para desktop e para notebook. E
 
 Para configurar um host:
 - <b>playbook-root.yaml</b>: para atualizar e configurar o S.O., bem como criar o usuário da estação, executa as roles: linux-atualizar, linux-tunning, linux-instalacar_pacotes_padroes e linux-cria_usuario;
-- <b>playbook-usuario.yaml</b>: executa as roles para configuração do home do usuário e das aplicações que queremos instalar.
+- <b>playbook-instalar.yaml</b>: executa as roles para configurar o home do usuário e instlar as aplicações.
+- <b>playbook-restaurar.yaml</b>: executa as roles para restaurar o home do usuário e as aplicações.
+
+<br>
+<br>
 
 # Instalação e configuração do Ansible
 
@@ -27,6 +31,8 @@ As coleções irão ser instaladas de acordo com a necessidade das funções (ro
 collections:
   - community.general
 ```
+
+> Atenção para as dependências de pacotes das coleções, pois, estes precisam ser instalados manualmente.
 
 ## Configuração 
   
@@ -83,29 +89,41 @@ Executar a playbook como <b>ansible</b>:
 
 Executar a playbook como o novo usuário:
 ```bash
-  ansible-playbook -e@tmp/SEU_VAULT.yaml playbook-usuario.yaml --syntax-check
+  ansible-playbook -e@tmp/SEU_VAULT.yaml playbook-instalar.yaml --syntax-check
 ```
+
+<br>
+<br>
 
 # Funções (roles) disponíveis
 | Função | Descrição |
 | --- | --- |
-|app-apache_directory_studio-instalar|Instala e configura o Apache Directory Studio|
-|app-apache_jmeter-instalar|Instala e configura o Apache JMeter|
-|app-aqua_data_studio-instalar|Instala e configura o Aqua Data Studio|
-|app-dbeaver-instalar|Instala e configura o DBeaver|
+|app-apache_directory_studio-instalar|Instala o Apache Directory Studio|
+|app-apache_directory_studio-restaurar|Restaura o Apache Directory Studio|
+|app-apache_jmeter-instalar|Instala o Apache JMeter|
+|app-apache_jmeter-restaurar|Restaurar o Apache JMeter|
+|app-aqua_data_studio-instalar|Instala o Aqua Data Studio|
+|app-aqua_data_studio-restaurar|Restaura o Aqua Data Studio|
+|app-dbeaver-instalar|Instala o DBeaver|
+|app-dbeaver-restaurar|Instala o DBeaver|
 |app-dbwrench-instalar|Instala o DBwrench|
+|app-dbwrench-restaurar|Restaura o DBwrench|
 |app-nautilus-instalar|Instala e configura o Nautilus e extensões|
+|app-nautilus-restaurar|Restaura o Nautilus e extensões|
 |app-terminator-instalar|Instala e configura o Terminator|
+|app-terminator-restaurar|Restaura o Terminator|
 |app-vim-instalar|Instala e configura o vim|
-|app-visual_studio_code-instalar|Instala e configura o Visual Studio Code|
-| comum | Esta função disponibiliza recursos utilizados por 2 ou mais funções, atualmente não tem tarefas |
+|app-vim-restaurar|Restaura o vim|
+|app-visual_studio_code-instalar|Instala o Visual Studio Code|
+|app-visual_studio_code-restaurar|Restaura o Visual Studio Code|
+|comum|Esta função disponibiliza recursos utilizados por 2 ou mais funções|
 |java-instalar_jdk8|Instala a jdk-8|
 |linux-atualizar|Atualiza o sistema operacional|
-|linux-configura_home|Configura o home do usuário e restaura as chaves do mesmo|
-|linux-configura_painel|Configura o painel do home de acordo com o tipo da estação|
 |linux-cria_usuario|Cria o grupo e a conta do usuário da estação|
+|linux-home-configurar|Configura o home do usuário|
+|linux-home-configura_painel|Configura o painel do home de acordo com o tipo da estação|
+|linux-home-restaurar|Restaura o home do usuário|
 |linux-instalacar_pacotes_padroes|Instala os pacotes padrões que normalmente uso|
-|linux-restaurar_backups|Restaura o backup das aplicações instaladas|
 |linux-tunning|Faz a configuração fina do sistema operacional (tunning)|
 |
 
@@ -135,21 +153,21 @@ Mapeamentos:
 
 | Name | Path | Acces | Auto Mount |
 | --- | --- | --- | --- |
-|dpc01|/media/jose.fernnades/dpc01|Full|False|
-|xubuntu|/media/jose.fernandes/dpc01/prodepa/git/ansible/estacao_de_trabalho/xubuntu|Full|False| 
+|usbhd|/media/jose.fernnades/jasf05|Full|False|
+|ansible|/u01/projetos/jasf/github/ansible/ansible_workstation|Full|False|
 |
 
 Os diretórios compartilhados não foram mapeados no fstab, para não prejudicar a inicialização da VM, caso os diretórios alvos não estivessem montados no host hospedeiro.
 
 Criando os pontos de montagem:
 ```
-mkdir /home/${USER}/xubuntu 
-sudo mkdir /media/${USER}/dpc01 -p
+mkdir /home/${USER}/ansible 
+sudo mkdir /media/${USER}/usbhd -p
 ```
 Montando os diretórios:
 ```
-sudo mount -t vboxsf -o uid=$USER,gid=${USER} dpc01 /media/${USER}/dpc01
-sudo mount -t vboxsf -o uid=$USER,gid=${USER} xubuntu ~/xubuntu
+sudo mount -t vboxsf -o uid=$USER,gid=${USER} usbhd /media/${USER}/dpc01
+sudo mount -t vboxsf -o uid=$USER,gid=${USER} ansible ~/ansible
 ```
 
 Obs: a utilização do ${USER} nos comandos shell e do lookup('ansible.builtin.env', 'USER') no playbook, facilitam a execução com os usuários ansible (usuário da instalação) e com o jose.fernandes (usuário novo).
