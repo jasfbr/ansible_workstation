@@ -1,0 +1,28 @@
+---
+
+- name: Instala e configurar o nomachine
+  block:
+
+    - name: Baixa o pacote deb
+      block:
+
+        - name: Verifica se o pacote já foi baixado
+          ansible.builtin.stat:
+            path: '{{path_to_downloads}}/nomachine/nomachine_8.8.1_1_amd64.deb'
+          register: file_status
+
+        - name: Baixa o pacote
+          ansible.builtin.get_url:
+            url: 'https://download.nomachine.com/download/8.8/Linux/nomachine_8.8.1_1_amd64.deb'
+            dest: '{{path_to_downloads}}/nomachine/nomachine_8.8.1_1_amd64.deb'
+            owner: '{{user.login}}'
+            group: '{{user.group}}'
+            mode: '0644'
+          when: not file_status.stat.exists
+
+        - name: Instala o nomachine
+          ansible.builtin.apt: 'deb={{path_to_downloads}}/nomachine/nomachine_8.8.1_1_amd64.deb'
+
+  become: true
+
+...
