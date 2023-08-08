@@ -8,7 +8,7 @@
     state: present
   become: true
 
-- name: Configura o Terminator como emulador de terminal padrão de linha de commando
+- name: Configura o Terminator como emulador de terminal padrão de linha de comando
   community.general.alternatives:
     name: x-terminal-emulator
     path: /usr/bin/terminator
