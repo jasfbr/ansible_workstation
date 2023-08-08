@@ -24,4 +24,11 @@
         state: present
       become: true
 
+    - name: Adiciona o usuário no grupo vboxusers
+      ansible.builtin.user:
+        name: '{{user.login}}'
+        groups: 'vboxusers'
+        append: true
+      become: yes
+
 ...
