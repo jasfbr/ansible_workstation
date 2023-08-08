@@ -2,7 +2,7 @@
 
 - name: restaura o diretório .local/share/DBeaverData
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/jose.fernandes/.local/share/DBeaverData/'
+    src: '{{path_to_backup}}/home/{{user.login}}/.local/share/DBeaverData/'
     dest: '/home/{{user.login}}/.local/share/DBeaverData/'
     local_follow: false
     mode: preserve

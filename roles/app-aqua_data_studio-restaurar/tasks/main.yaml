@@ -2,7 +2,7 @@
 
 - name: restaura o diretório .datastudio
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/jose.fernandes/.datastudio/'
+    src: '{{path_to_backup}}/home/{{user.login}}/.datastudio/'
     dest: '/home/{{user.login}}/.datastudio/'
     local_follow: false
     mode: preserve

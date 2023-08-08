@@ -21,7 +21,7 @@
     owner: '{{user.login}}'
     group: '{{user.group}}'
   with_items:
-    - {src: '{{path_to_backup}}/home/jose.fernandes/.config/VirtualBox/', dest: '/home/{{user.login}}/.config/VirtualBox/'}
+    - {src: '{{path_to_backup}}/home/{{user.login}}/.config/VirtualBox/', dest: '/home/{{user.login}}/.config/VirtualBox/'}
     - {src: '{{path_to_backup}}/u01/virtual_machines/', dest: '/u01/virtual_machines/'}
     - {src: '{{path_to_backup}}/u02/virtual_machines/', dest: '/u02/virtual_machines/'}
 

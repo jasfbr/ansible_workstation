@@ -1,8 +1,8 @@
 ---
 
-- name: restaura o diretório .config/terminator
+- name: Restaura o diretório .config/terminator
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/jose.fernandes/.config/terminator/'
+    src: '{{path_to_backup}}/home/{{user.login}}/.config/terminator/'
     dest: /home/{{user.login}}/.config/terminator/
     local_follow: false
     mode: preserve

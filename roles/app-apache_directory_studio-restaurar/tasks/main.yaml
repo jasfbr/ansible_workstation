@@ -2,7 +2,7 @@
 
 - name: restaura o diretório .ApacheDirectoryStudio
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/jose.fernandes/.ApacheDirectoryStudio/'
+    src: '{{path_to_backup}}/home/{{user.login}}/.ApacheDirectoryStudio/'
     dest: '/home/{{user.login}}/.ApacheDirectoryStudio/'
     local_follow: false
     mode: preserve
