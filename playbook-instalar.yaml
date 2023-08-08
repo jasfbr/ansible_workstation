@@ -6,20 +6,21 @@
   hosts: localhost 
 
   roles:
-  - linux-atualizar
-  - linux-home-configurar
-  - linux-home-configurar_painel
-  - app-vim-instalar
-  - app-terminator-instalar
-  - app-nautilus-instalar
-  - app-dbeaver-instalar
-  - app-visual_studio_code-instalar
-  - app-aqua_data_studio-instalar
-  - app-apache_jmeter-instalar
-  - app-apache_directory_studio-instalar
-  - app-dbwrench-instalar
-  - app-google_chrome-instalar
-  - app-pgadmin4-instalar
-  - app-firefox-instalar
+#  - linux-atualizar
+#  - linux-home-configurar
+#  - linux-home-configurar_painel
+#  - linux-network-configuar_vpn
+#  - app-vim-instalar
+#  - app-terminator-instalar
+#  - app-nautilus-instalar
+#  - app-dbeaver-instalar
+#  - app-visual_studio_code-instalar
+#  - app-aqua_data_studio-instalar
+#  - app-apache_jmeter-instalar
+#  - app-apache_directory_studio-instalar
+#  - app-dbwrench-instalar
+#  - app-google_chrome-instalar
+#  - app-pgadmin4-instalar
+#  - app-firefox-instalar
 
 ...

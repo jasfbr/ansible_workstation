@@ -65,6 +65,14 @@ vault_path_to_backup:
 
 # app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
 vault_path_to_downloads: 
+
+# linux-network-configurar_vpn
+vpn_domain: 
+vpn_user_login: 
+# vpn_user_password: 
+vpn_group: 
+vpn_group_password: 
+
 ```
 
 >Onde:<br>

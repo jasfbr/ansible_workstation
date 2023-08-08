@@ -22,6 +22,6 @@ vault_path_to_downloads:
 # linux-network-configurar_vpn
 vpn_domain: 
 vpn_user_login: 
-vpn_user_pass: 
+# vpn_user_password: 
 vpn_group: 
-vpn_group_pass: 
+vpn_group_password: 
