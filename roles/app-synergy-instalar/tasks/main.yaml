@@ -1,0 +1,17 @@
+---
+
+- name: Instala o Synergy
+  block:
+
+    - name: Verifica se o pacote existe
+      ansible.builtin.stat:
+        path: '{{path_to_downloads}}/symless/synergy-linux_x64-libssl3-v3.0.73.7-rc2.deb'
+      register: file_status
+
+    - name: Instala se o pacote existir
+      ansible.builtin.apt: 'deb={{path_to_downloads}}/symless/synergy-linux_x64-libssl3-v3.0.73.7-rc2.deb'
+      when: file_status.stat.exists
+
+  become: true
+
+...

@@ -2,8 +2,8 @@
 
 - name: 'Restaura a pasta .nx'
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/{{user.login}}/.nx'
-    dest: '/home/{{user.login}}/.nx'
+    src: '{{path_to_backup}}/home/{{user.login}}/.nx/'
+    dest: '/home/{{user.login}}/.nx/'
     local_follow: false
     mode: preserve
     owner: {{user.login}}

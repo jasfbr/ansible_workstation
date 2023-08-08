@@ -1,0 +1,15 @@
+---
+
+- name: 'Restaura as pastas do synergy'
+  ansible.builtin.copy:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  with_items:
+    - {src: '{{path_to_backup}}/home/{{user.login}}/.config/synergy/',dest: '/home/{{user.login}}/.config/synergy/'}
+    - {src: '{{path_to_backup}}/home/{{user.login}}/.config/Synergy/',dest: '/home/{{user.login}}/.config/Synergy/'}
+
+...
