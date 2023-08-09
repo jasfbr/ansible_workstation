@@ -8,7 +8,7 @@
   roles:
 #  - linux-atualizar
 #  - linux-home-restaurar
-#  - linux-network-configuar_vpn
+#  - linux-network-vpn-restaurar
 #  - app-apache_directory_studio-restaurar
 #  - app-apache_jmeter-restaurar
 #  - app-aqua_data_studio-restaurar
