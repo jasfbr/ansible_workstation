@@ -37,10 +37,10 @@
 - name: 'Configura o prompt de comando'
   ansible.builtin.replace:
     path: '/home/{{user.login}}/.bashrc'
-    after: 'if [ "$color_prompt" = yes ]; then'
-    before: 'unset color_prompt force_color_prompt'
+    after: 'if \[ "\$color_prompt" = yes \]; then'
+    before: 'esac'
     regexp: '\\w\\'
-    replace: '\W\'
+    replace: '\\W\\'
 
 - name: cria o diretório .local/share/applications se não existir
   ansible.builtin.file:
