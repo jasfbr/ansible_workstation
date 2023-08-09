@@ -9,6 +9,7 @@ vault_user_uid:
 vault_user_group: 
 vault_user_guid: 
 vault_user_groups: 
+vault_user_key_password: 
 
 # linux-configura_painel
 vault_tipo_estacao: 'desktop'

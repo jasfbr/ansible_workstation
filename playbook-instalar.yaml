@@ -25,5 +25,7 @@
 #  - app-nomachine-instalar
 #  - app-vmware_remote_console-instalar
 #  - app-synergy-instalar
+#  - app-jbosseap7.1-cli-instalar
+#  - app-jbosseap6.4-cli-instalar
 
 ...

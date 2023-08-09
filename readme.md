@@ -162,7 +162,7 @@ Mapeamentos:
 | Name | Path | Acces | Auto Mount |
 | --- | --- | --- | --- |
 |usbhd|/media/jose.fernnades/jasf05|Full|False|
-|ansible|/u01/projetos/jasf/github/ansible/ansible_workstation|Full|False|
+|ansible_workstation|/home/jose.fernandes/projects/github/ansible_workstation-main|Full|False|
 |
 
 Os diretórios compartilhados não foram mapeados no fstab, para não prejudicar a inicialização da VM, caso os diretórios alvos não estivessem montados no host hospedeiro.
@@ -236,3 +236,5 @@ https://serverfault.com/questions/875247/whats-the-difference-between-include-ta
 
 https://jinja.palletsprojects.com/en/latest/
 https://www.edivaldobrito.com.br/java-no-ubuntu-instalar-o-openjdk-8/
+
+https://www.codesandnotes.be/2020/01/13/generate-ssh-keys-using-ansible/

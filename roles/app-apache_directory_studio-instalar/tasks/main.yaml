@@ -3,7 +3,7 @@
 - name: Instala e configura o Apache Directory Studio
   block:
 
-  - name: 'Instala as dependências (jdk7)'
+  - name: 'Instala as dependências (jdk)'
     ansible.builtin.apt: 
       update_cache: true
       name: default-jdk

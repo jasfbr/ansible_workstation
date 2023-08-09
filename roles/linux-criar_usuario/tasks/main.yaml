@@ -26,6 +26,12 @@
     groups: '{{user.groups}}'
     shell: /bin/bash
     append: true
+    generate_ssh_key: true
+    ssh_key_type: rsa
+    ssh_key_bits: 4096
+    ssh_key_file: '/home/{{user.login}}/.ssh/id_rsa'
+    ssh_key_passphrase: '{{vault_user_key_password}}'
+    force: false
     state: present
   become: true
 

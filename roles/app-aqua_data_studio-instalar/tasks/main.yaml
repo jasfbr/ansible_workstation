@@ -19,6 +19,7 @@
         copy: false 
         owner: root
         group: root
+      become: true
 
     - name: configura o item de menu do Aqua Data Studio (Launcher)
       ansible.builtin.template:
