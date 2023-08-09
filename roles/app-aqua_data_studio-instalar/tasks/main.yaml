@@ -6,8 +6,8 @@
     - name: Cria a pasta /opt/aquafold
       ansible.builtin.file:
         path: /opt/aquafold
-        owner: '{{user.login}}'
-        group: '{{user.group}}'
+        owner: root
+        group: root
         mode: '0755'
         state: directory 
       become: true
@@ -17,8 +17,8 @@
         src: '{{path_to_downloads}}/sgbd/aquafold/datastudio-16.0.5-9.tar.bz2'
         dest: '/opt/aquafold'
         copy: false 
-        owner: '{{user.login}}'
-        group: '{{user.group}}'
+        owner: root
+        group: root
 
     - name: configura o item de menu do Aqua Data Studio (Launcher)
       ansible.builtin.template:

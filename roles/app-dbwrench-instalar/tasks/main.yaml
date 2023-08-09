@@ -31,8 +31,8 @@
     - name: Cria a pasta /opt/nizana
       ansible.builtin.file:
         path: /opt/nizana
-        owner: '{{user.login}}'
-        group: '{{user.group}}'
+        owner: root
+        group: root
         mode: '0755'
         state: directory 
       become: true
@@ -42,8 +42,8 @@
         src: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
         dest: /opt/nizana
         copy: false 
-        owner: '{{user.login}}'
-        group: '{{user.group}}'
+        owner: root
+        group: root
       become: true
 
     - name: Configura o java (dbwrench.conf)
@@ -59,8 +59,8 @@
         src: '../files/'
         dest: '/opt/nizana/dbwrench/'
         mode: '0644'
-        owner: '{{user.login}}'
-        group: '{{user.group}}'
+        owner: root
+        group: root
       become: true
 
     - name: Configura o item de menu do Dbwrench (Launcher)

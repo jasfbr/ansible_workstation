@@ -1,0 +1,61 @@
+---
+
+- name: Instala e configura o jboss-cli do eap 6.4
+  block:
+
+    - name: Instala as dependências (openjdk8)
+      block:
+
+        - name: 'Cria a pasta /opt/oracle'
+          ansible.builtin.file:
+            path: /opt/oracle
+            owner: root
+            group: root
+            mode: '0755'
+            state: directory
+
+        - name: 'Descompacta o pacote jdk-7u80-linux-x64.tar.gz'
+          ansible.builtin.unarchive:
+            src: '{{path_to_downloads}}/oracle/jdk-7u80-linux-x64.tar.gz'
+            dest: '/opt/oracle'
+            copy: false
+            owner: root
+            group: root
+
+    - name: 'Cria a pasta /opt/redhat'
+      ansible.builtin.file:
+        path: /opt/redhat
+        owner: root
+        group: root
+        mode: '0755'
+        state: directory
+
+    - name: 'Descompacta o pacote jboss-eap-6.4.0.zip'
+      ansible.builtin.unarchive:
+        src: '{{path_to_downloads}}/redhat/jboss-eap-6.4.0.zip'
+        dest: '/opt/redhat'
+        copy: false
+        owner: root
+        group: root
+
+    - name: 'Configura o JAVA_HOME no script jboss-cli.sh'
+      ansible.builtin.lineinfile:
+        path: '/opt/redhat/jboss-eap-6.4/bin/jboss-cli.sh'
+        line: 'JAVA_HOME="/opt/oracle/jdk1.7.0_80"'
+        insertbefore: '# Setup JBOSS_HOME'
+        backup: true
+        state: present
+
+  become: true
+
+- name: 'Cria o atalho'
+  ansible.builtin.lineinfile:
+    path: '/home/{{user.login}}/.bash_aliases'
+    line: 'alias jboss-cli6=/opt/redhat/jboss-eap-6.4/bin/jboss-cli.sh'
+    backup: true
+    create: true
+    state: present
+  notify:
+    - reiniciar_bashrc
+
+...

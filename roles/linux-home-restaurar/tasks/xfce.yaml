@@ -22,10 +22,10 @@
 
     - name: Cria o alias para os scripts
       ansible.builtin.lineinfile:
-        path: '/home/{{user.login}}/.bashrc'
+        path: '/home/{{user.login}}/.bash_aliases'
         line: '{{item}}'
-        insertafter: '# some more ls aliases'
         backup: true
+        create: true
         state: present
       with_items:
         - 'alias c=~/applications/scripts/conectar.sh'

@@ -3,7 +3,7 @@
 - name: Instala e configura o Apache Directory Studio
   block:
 
-  - name: Instala as dependências
+  - name: 'Instala as dependências (jdk7)'
     ansible.builtin.apt: 
       update_cache: true
       name: default-jdk
@@ -15,7 +15,7 @@
 
     - name: Verifica se o arquivo existe
       ansible.builtin.stat:
-        path: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+        path: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
       register: file_status
 
     - name: Cria o diretório '{{path_to_downloads}}/apache/apache_directory_studio'
@@ -28,7 +28,7 @@
     - name: Baixa o arquivo
       ansible.builtin.get_url:
         url: 'https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz'
-        dest: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+        dest: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
         decompress: false
         owner: '{{user.login}}'
         group: '{{user.group}}'
@@ -38,19 +38,19 @@
   - name: Cria a pasta /opt/apache
     ansible.builtin.file:
       path: /opt/apache
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
+      owner: root
+      group: root
       mode: '0755'
       state: directory 
     become: true
 
   - name: Descompacta o pacote ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz
     ansible.builtin.unarchive:
-      src: '{{path_to_downloads}}/apache/apache_directory_studio/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+      src: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
       dest: /opt/apache
       copy: false 
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
+      owner: root
+      group: root
     become: true
 
   - name: Configura o item de menu do Apache Directory Studio (Launcher)

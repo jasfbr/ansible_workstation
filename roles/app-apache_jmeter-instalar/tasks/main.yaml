@@ -15,7 +15,7 @@
 
     - name: Verifica se o arquivo existe
       ansible.builtin.stat:
-        path: '{{path_to_downloads}}/apache/jmeter/apache-jmeter-5.6.2.tgz'
+        path: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
       register: file_status
 
     - name: Cria o diretório '{{path_to_downloads}}/apache/jmeter'
@@ -27,8 +27,8 @@
 
     - name: Baixa o arquivo
       ansible.builtin.get_url:
-        url: 'https://dlcdn.apache.org/jmeter/binaries/apache-jmeter-5.6.2.tgz'
-        dest: '{{path_to_downloads}}/apache/jmeter/apache-jmeter-5.6.2.tgz'
+        url: 'https://dlcdn.apache.org/binaries/apache-jmeter-5.6.2.tgz'
+        dest: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
         decompress: false
         owner: '{{user.login}}'
         group: '{{user.group}}'
@@ -38,19 +38,19 @@
   - name: Cria a pasta /opt/apache
     ansible.builtin.file:
       path: /opt/apache
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
+      owner: root
+      group: root
       mode: '0755'
       state: directory 
     become: true
 
   - name: Descompacta o pacote apache-jmeter-5.6.2.tgz
     ansible.builtin.unarchive:
-      src: '{{path_to_downloads}}/apache/jmeter/apache-jmeter-5.6.2.tgz'
+      src: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
       dest: /opt/apache
       copy: false 
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
+      owner: root
+      group: root
     become: true
 
   - name: Configura o item de menu do Jmeter (Launcher)

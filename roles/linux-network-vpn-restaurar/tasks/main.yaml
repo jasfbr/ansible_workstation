@@ -23,10 +23,10 @@
 
     - name: Cria o alias para o script 
       ansible.builtin.lineinfile:
-        path: '/home/{{user.login}}/.bashrc'
+        path: '/home/{{user.login}}/.bash_aliases'
         line: 'alias rotas_vpn=~/applications/scripts/rotas_vpn.sh'
-        insertafter: '# some more ls aliases'
         backup: true
+        create: true
         state: present
       notify: 
         - reiniciar_bashrc
