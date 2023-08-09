@@ -1,6 +1,6 @@
 ---
 
-- name: restaura o /etc/hosts
+- name: Restaura o /etc/hosts
   ansible.builtin.copy:
     src: '{{path_to_backup}}/etc/hosts'
     dest: /etc/hosts
@@ -9,10 +9,34 @@
     group: root
   become: true
 
+- name: 'Restaura a pasta applications/scripts'
+  block:
+
+    - name: 'Restaura a pasta applications/scripts'
+      ansible.builtin.copy:
+        src: '{{path_to_backup}}/home/{{user.login}}/applications/scripts/'
+        dest: '/home/{{user.login}}/applications/scripts/'
+        mode: preserve
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+
+    - name: Cria o alias para os scripts
+      ansible.builtin.lineinfile:
+        path: '/home/{{user.login}}/.bashrc'
+        line: '{{item}}'
+        insertafter: '# some more ls aliases'
+        backup: true
+        state: present
+      with_items:
+        - 'alias c=~/applications/scripts/conectar.sh'
+        - 'alias backup.sh=~/applications/scripts/backup.sh'
+      notify: 
+        - reiniciar_bashrc
+
 - name: Restaura a chave do usuário
   block:
 
-  - name: copia as chaves
+  - name: Copia as chaves
     ansible.builtin.copy:
       src: '{{path_to_backup}}/home/{{user.login}}/.ssh/'
       dest: '/home/{{user.login}}/.ssh/'
