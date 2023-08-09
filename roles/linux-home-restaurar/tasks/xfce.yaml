@@ -31,30 +31,36 @@
 - name: 'Configura o background'
   block:
 
-  - name: 'Cria o diretório /u01/aplicativos/background'
-    ansible.builtin.file:
-      path: /u01/aplicativos/background
-      state: directory
-      recurse: true
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
-    become: true
+    - name: 'Cria o diretório /home/{{user.login}}/applications'
+      ansible.builtin.file:
+        path: '/home/{{user.login}}/applications'
+        state: directory
+        recurse: true
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+      become: true
 
-  - name: 'Restaura o arquivo /u01/aplicativos/background/56014-1.jpg'
-    ansible.builtin.copy:
-      src: '{{path_to_backup}}/u01/aplicativos/background/56014-1.jpg'
-      dest: '/u01/aplicativos/background/56014-1.jpg'
-      local_follow: false
-      mode: preserve
-      owner: '{{user.login}}'
-      group: '{{user.group}}'
+    - name: 'Restaura o arquivo /home/{{user.login}}/applications/background'
+      ansible.builtin.copy:
+        src: '{{path_to_backup}}/home/{{user.login}}/applications/background/'
+        dest: '/home/{{user.login}}/applications/background/'
+        local_follow: false
+        mode: preserve
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
 
-  - name: 'Configura a imagem de backgrund do desktop'
-    community.general.xfconf: 
-      channel: 'xfce4-desktop'
-      property: '/backdrop/screen0/monitor0/image-path'
-      value_type: 'string'
-      value: '/u01/aplicativos/background/56014-1.jpg'
-  when: restaurar_backup
+    - name: 'Seleciona a imagem de backgrund'
+      community.general.xfconf: 
+        channel: 'xfce4-desktop'
+        property: '/backdrop/screen0/monitor0/image-path'
+        value_type: 'string'
+        value: '/home/{{user.login}}/applications/background/56014-1.jpg'
+
+    - name: 'Aplica a imagem para todos os desktops'
+      community.general.xfconf: 
+        channel: 'xfce4-desktop'
+        property: '/backdrop/single-workspace-mode'
+        value_type: 'bool'
+        value: true
 
 ...
