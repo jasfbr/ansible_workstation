@@ -10,6 +10,7 @@
       - git
       - synaptic
       - pdfarranger
+      - usb-creator-gtk
       # Language Support
       - hunspell-en-gb
       - hunspell-en-za
