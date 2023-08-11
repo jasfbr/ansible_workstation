@@ -6,7 +6,7 @@
     dest: '/home/{{user.login}}/.nx/'
     local_follow: false
     mode: preserve
-    owner: {{user.login}}
-    group: {{user.group}}
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
 
 ...
