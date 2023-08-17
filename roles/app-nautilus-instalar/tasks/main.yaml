@@ -1,13 +1,12 @@
 ---
 
-# TODO: Verificar se o git está instalado para instalar o rabbitvcs-nautilus 
-
 - name: instala o Nautilus e o rabbitvcs
   ansible.builtin.apt: 
     update_cache: true
     name:
       - nautilus 
       - rabbitvcs-nautilus 
+      - git
     state: present
   become: true
 

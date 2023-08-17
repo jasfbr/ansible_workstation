@@ -5,9 +5,6 @@
     update_cache: true
     name:
       - openssh-server 
-      - ntp 
-      - net-tools
-      - git
       - synaptic
       - pdfarranger
       - usb-creator-gtk

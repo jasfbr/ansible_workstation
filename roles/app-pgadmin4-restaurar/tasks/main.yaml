@@ -12,5 +12,6 @@
     - '.pgadmin'
     - '.config/pgadmin'
     - '.config/pgadmin4'
+    - '.psqlrc'
 
 ...

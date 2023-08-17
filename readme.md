@@ -161,7 +161,7 @@ Mapeamentos:
 
 | Name | Path | Acces | Auto Mount |
 | --- | --- | --- | --- |
-|usbhd|/media/jose.fernnades/jasf05|Full|False|
+|usbhd|/u01|Full|False|
 |ansible_workstation|/home/jose.fernandes/projects/github/ansible_workstation-main|Full|False|
 |
 
@@ -169,13 +169,13 @@ Os diretórios compartilhados não foram mapeados no fstab, para não prejudicar
 
 Criando os pontos de montagem:
 ```
-mkdir /home/${USER}/ansible 
+mkdir /home/${USER}/ansible_workstation 
 sudo mkdir /media/${USER}/usbhd -p
 ```
 Montando os diretórios:
 ```
-sudo mount -t vboxsf -o uid=$USER,gid=${USER} usbhd /media/${USER}/dpc01
-sudo mount -t vboxsf -o uid=$USER,gid=${USER} ansible ~/ansible
+sudo mount -t vboxsf -o uid=$USER,gid=${USER} usbhd /media/${USER}/usbhd
+sudo mount -t vboxsf -o uid=$USER,gid=${USER} ansible_workstation ~/ansible_workstation
 ```
 
 Obs: a utilização do ${USER} nos comandos shell e do lookup('ansible.builtin.env', 'USER') no playbook, facilitam a execução com os usuários ansible (usuário da instalação) e com o jose.fernandes (usuário novo).

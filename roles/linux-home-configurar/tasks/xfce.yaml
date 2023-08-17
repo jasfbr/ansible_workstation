@@ -1,7 +1,5 @@
 ---
 
-# TODO: Adicionar opção para gerar chaves novas ou restaurar do backup
-
 # Minhas configurações padrões
 - name: Altera o alias ll
   ansible.builtin.lineinfile:

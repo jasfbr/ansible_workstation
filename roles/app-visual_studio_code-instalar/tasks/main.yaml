@@ -20,6 +20,7 @@
         update_cache: true
         name:
           - code
+          - git
         state: present
       become: true
 
