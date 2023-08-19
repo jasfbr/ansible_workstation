@@ -1,0 +1,23 @@
+---
+
+- name: Verifica se o arquivo existe
+  ansible.builtin.stat:
+    path: '{{path_to_downloads}}/downloadhelper/net.downloadhelper.coapp-1.6.3-1_amd64.deb'
+  register: file_status
+
+- name: Baixa o arquivo
+  ansible.builtin.get_url:
+    url: 'https://github.com/mi-g/vdhcoapp/releases/download/v1.6.3/net.downloadhelper.coapp-1.6.3-1_amd64.deb'
+    dest: '{{path_to_downloads}}/downloadhelper/net.downloadhelper.coapp-1.6.3-1_amd64.deb'
+    decompress: false
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+    mode: '0644'
+  when: not file_status.stat.exists
+
+- name: instala o DownloadHelper
+  ansible.builtin.apt: 
+    deb: '{{path_to_downloads}}/downloadhelper/net.downloadhelper.coapp-1.6.3-1_amd64.deb'
+  become: true
+
+...
