@@ -1,6 +1,6 @@
 ---
 
-- name: instala o Terminator
+- name: Instala o Terminator
   ansible.builtin.apt: 
     update_cache: true
     name:
@@ -15,7 +15,7 @@
     state: present
   become: true
 
-- name: configura o Terminator como emulador de terminal padrão no Xfce
+- name: Configura o Terminator como emulador de terminal padrão no Xfce
   ansible.builtin.lineinfile:
     path: /home/{{user.login}}/.config/xfce4/helpers.rc
     regexp: '^TerminalEmulator'
@@ -25,5 +25,14 @@
     owner: '{{user.login}}'
     group: '{{user.group}}'
   become: true
+
+- name: Restaura os arquivos e pastas de configuração
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restore_configuration_files.yaml
+  vars:
+    soures:
+      - '.config/terminator/'
+  when: restaurar_backup
 
 ...

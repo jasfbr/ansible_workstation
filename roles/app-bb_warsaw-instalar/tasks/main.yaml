@@ -15,7 +15,7 @@
     mode: '0644'
   when: not file_status.stat.exists
 
-- name: instala o Warsaw
+- name: Instala o Warsaw
   ansible.builtin.apt: 
     deb: '{{path_to_downloads}}/gastecnologia/warsaw_setup64.deb'
   become: true

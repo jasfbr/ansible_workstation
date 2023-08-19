@@ -31,4 +31,18 @@
         append: true
       become: yes
 
+- name: Restaura os diretórios do VirtualBox
+  ansible.builtin.copy:
+    src: '{{item.src}}'
+    dest: '{{item.dest}}'
+    local_follow: true
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  with_items:
+    - {src: '{{path_to_backup}}/home/{{user.login}}/.config/VirtualBox/', dest: '/home/{{user.login}}/.config/VirtualBox/'}
+    - {src: '{{path_to_backup}}/u01/virtual_machines/', dest: '/u01/virtual_machines/'}
+    - {src: '{{path_to_backup}}/u02/virtual_machines/', dest: '/u02/virtual_machines/'}
+  when: restaurar_backup
+
 ...

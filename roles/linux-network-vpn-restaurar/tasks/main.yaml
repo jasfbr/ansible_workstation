@@ -1,6 +1,6 @@
 ---
 
-- name: Restura o script rotas_vpn.sh
+- name: Restaura o script rotas_vpn.sh
   block:
 
     - name: 'Cria o diretório /home/{{user.login}}/applications/scripts'

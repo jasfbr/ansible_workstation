@@ -15,7 +15,7 @@
     mode: '0644'
   when: not file_status.stat.exists
 
-- name: instala o DownloadHelper
+- name: Instala o DownloadHelper
   ansible.builtin.apt: 
     deb: '{{path_to_downloads}}/downloadhelper/net.downloadhelper.coapp-1.6.3-1_amd64.deb'
   become: true

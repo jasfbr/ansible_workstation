@@ -3,7 +3,7 @@
 - name: Instala e configura o Jmeter
   block:
 
-  - name: instala as dependências
+  - name: Instala as dependências
     ansible.builtin.apt: 
       update_cache: true
       name: default-jdk

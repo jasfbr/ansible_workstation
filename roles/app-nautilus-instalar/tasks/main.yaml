@@ -1,6 +1,6 @@
 ---
 
-- name: instala o Nautilus e o rabbitvcs
+- name: Instala o Nautilus e o rabbitvcs
   ansible.builtin.apt: 
     update_cache: true
     name:
@@ -10,7 +10,7 @@
     state: present
   become: true
 
-- name: configura o nautilus como gerenciador de arquivos padrão no Xfce
+- name: Configura o nautilus como gerenciador de arquivos padrão no Xfce
   ansible.builtin.lineinfile:
     path: /home/{{user.login}}/.config/xfce4/helpers.rc
     regexp: '^FileManager'
@@ -19,5 +19,14 @@
     create: true
     owner: '{{user.login}}'
     group: '{{user.group}}'
+
+- name: Restaura os arquivos e pastas de configuração
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restore_configuration_files.yaml
+  vars:
+    soures:
+      - '.config/nautilus/'
+  when: restaurar_backup
 
 ...

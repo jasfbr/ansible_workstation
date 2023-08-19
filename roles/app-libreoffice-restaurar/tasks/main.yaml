@@ -1,12 +1,11 @@
 ---
 
-- name: restaura o diretório .config/libreoffice
-  ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/{{user.login}}/.config/libreoffice/'
-    dest: /home/{{user.login}}/.config/libreoffice/
-    local_follow: false
-    mode: preserve
-    owner: '{{user.login}}'
-    group: '{{user.group}}'
+- name: Restaura os arquivos e pastas de configuração
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: restore_configuration_files.yaml
+  vars:
+    soures:
+      - '.config/libreoffice/'
 
 ...

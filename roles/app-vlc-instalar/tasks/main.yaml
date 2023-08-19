@@ -8,14 +8,14 @@
     state: present
   become: true
 
-- name: restura as pastas de configuração
+- name: Restaura os arquivos e pastas de configuração
   ansible.builtin.include_role:
     name: common
-    tasks_from: restore_configuration_foldes.yaml
+    tasks_from: restore_configuration_files.yaml
   vars:
-    pastas:
-      - '.config/vlc'
-      - '.local/share/vlc'
+    soures:
+      - '.config/vlc/'
+      - '.local/share/vlc/'
   when: restaurar_backup
 
 ...

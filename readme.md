@@ -56,6 +56,7 @@ vault_user_uid:
 vault_user_group: 
 vault_user_guid: 
 vault_user_groups: 
+vault_user_key_password: 
 
 # linux-configura_painel
 vault_tipo_estacao: 'desktop'
@@ -83,8 +84,9 @@ vpn_group_password:
 &mdash; <b>vault_user_group</b>: grupo principal do usuário da estação, deve ser o mesmo da sua conda no LDAP;<br>
 &mdash; <b>vault_user_guid</b>: guid do grupo, deve ser o mesmo do grupo no LDAP;<br>
 &mdash; <b>vault_user_groups</b>: grupos (na estação) que o usuário deve pertencer;<br>
+&mdash; <b>vault_user_key_password</b>: senha para a SSH key;<br>
 &mdash; <b>vault_tipo_estacao</b>: Tipo da configuração do painel no XFCE, pode ser: desktop ou notebook;<br>
-&mdash; <b>vault_path_to_backup</b>: Caminho até a pasta do backup que deve ser resturado;<br>
+&mdash; <b>vault_path_to_backup</b>: Caminho até a pasta do backup que deve ser restaurado;<br>
 &mdash; <b>vault_path_to_downloads</b>: Caminho até a pasta de downloads.<br>
 
 >Obs: Estamos usando as credenciais da conta do usuário no LDAP para facilitar futura configuração da autenticação no LDAP.
@@ -104,37 +106,41 @@ Executar a playbook como o novo usuário:
 <br>
 
 # Funções (roles) disponíveis
-| Função | Descrição |
-| --- | --- |
-|app-apache_directory_studio-instalar|Instala o Apache Directory Studio|
-|app-apache_directory_studio-restaurar|Restaura o Apache Directory Studio|
-|app-apache_jmeter-instalar|Instala o Apache JMeter|
-|app-apache_jmeter-restaurar|Restaurar o Apache JMeter|
-|app-aqua_data_studio-instalar|Instala o Aqua Data Studio|
-|app-aqua_data_studio-restaurar|Restaura o Aqua Data Studio|
-|app-bb_warsaw-instalar|Instala o warsaw para o Banco do Brasil|
-|app-dbeaver-instalar|Instala o DBeaver|
-|app-dbeaver-restaurar|Instala o DBeaver|
-|app-dbwrench-instalar|Instala o DBwrench|
-|app-dbwrench-restaurar|Restaura o DBwrench|
-|app-nautilus-instalar|Instala e configura o Nautilus e extensões|
-|app-nautilus-restaurar|Restaura o Nautilus e extensões|
-|app-terminator-instalar|Instala e configura o Terminator|
-|app-terminator-restaurar|Restaura o Terminator|
-|app-vim-instalar|Instala e configura o vim|
-|app-vim-restaurar|Restaura o vim|
-|app-visual_studio_code-instalar|Instala o Visual Studio Code|
-|app-visual_studio_code-restaurar|Restaura o Visual Studio Code|
-|app-vlc-instalar|Instala o VLC media player|
-|common|Esta função disponibiliza recursos utilizados por 2 ou mais funções|
-|java-instalar_jdk8|Instala a jdk-8|
-|linux-atualizar|Atualiza o sistema operacional|
-|linux-cria_usuario|Cria o grupo e a conta do usuário da estação|
-|linux-home-configurar|Configura o home do usuário|
-|linux-home-configura_painel|Configura o painel do home de acordo com o tipo da estação|
-|linux-home-restaurar|Restaura o home do usuário|
-|linux-instalacar_pacotes_padroes|Instala os pacotes padrões que normalmente uso|
-|linux-tunning|Faz a configuração fina do sistema operacional (tunning)|
+|Função|Descrição|restaurar_backup|
+| --- | --- | --- |
+|app-apache_directory_studio-instalar|Instala o Apache Directory Studio|Sim|
+|app-apache_jmeter-instalar|Instala o Apache JMeter||
+|app-aqua_data_studio-instalar|Instala o Aqua Data Studio|Sim|
+|app-bb_warsaw-instalar|Instala o warsaw para o Banco do Brasil||
+|app-dbeaver-instalar|Instala o DBeaver|Sim|
+|app-dbwrench-instalar|Instala o DBwrench||
+|app-downloadhelper_coapp-instalar|Instala o DownloadHelper Companion app||
+|app-firefox-instalar|Instalar o Firefox|Sim|
+|app-google_chrome-instalar| instalar o Google Chrome|Sim|
+|app-jbosseap6.4-cli-instalar|Instalar o jboss-cli do EAP 6.4||
+|app-jbosseap7.1-cli-instalar|Instalar o jboss-cli do EAP 7.1||
+|app-libreoffice-restaurar| Restaurar as configurações do LibreOffice||
+|app-nautilus-instalar|Instala e configura o Nautilus e extensões|Sim|
+|app-nomachine-instalar|Instalar o Nomachine|Sim|
+|app-pgadmin4-instalar|Instalar o PgAdmin4 e o postgresql client|Sim|
+|app-spotify-instalar|Instalar o Spotify|Sim|
+|app-synergy-instalar|Instalar o Synergy|Sim|
+|app-terminator-instalar|Instala e configura o Terminator|Sim|
+|app-thunderbird-restaurar|Restaura as configurações do Thunderbird||
+|app-vim-instalar|Instala e configura o vim||
+|app-virtual_box-instalar|Instala o VirtualBox|Sim|
+|app-visual_studio_code-instalar|Instala o Visual Studio Code|Sim|
+|app-vlc-instalar|Instala o VLC media player|Sim|
+|app-vmware_remote_console-instalar|Instalar o VMware Remote Console||
+|common|Esta função disponibiliza recursos utilizados por 2 ou mais funções||
+|java-instalar_jdk8|Instala a jdk-8||
+|linux-atualizar|Atualiza o sistema operacional||
+|linux-cria_usuario|Cria o grupo e a conta do usuário da estação||
+|linux-home-configurar|Configura o home do usuário||
+|linux-home-configura_painel|Configura o painel do home de acordo com o tipo da estação||
+|linux-home-restaurar|Restaura o home do usuário||
+|linux-instalacar_pacotes_padroes|Instala os pacotes padrões que normalmente uso||
+|linux-tunning|Faz a configuração fina do sistema operacional (tunning)||
 |
 
 <br>

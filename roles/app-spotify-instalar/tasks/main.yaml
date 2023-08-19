@@ -23,4 +23,13 @@
 
   become: true
 
+- name: Restaura os arquivos e pastas de configuração
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restore_configuration_files.yaml
+  vars:
+    soures:
+      - '.config/spotify/'
+  when: restaurar_backup
+
 ...
