@@ -1,0 +1,13 @@
+---
+
+- name: Restaura as pastas de configuração
+  ansible.builtin.copy:
+    src: '{{path_to_backup}}/home/{{user.login}}/{{item}}/'
+    dest: '/home/{{user.login}}/{{item}}'
+    local_follow: false
+    mode: preserve
+    owner: '{{user.login}}'
+    group: '{{user.group}}'
+  with_items: '{{pastas}}'
+
+...

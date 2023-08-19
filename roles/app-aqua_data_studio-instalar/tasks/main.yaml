@@ -23,7 +23,7 @@
 
     - name: configura o item de menu do Aqua Data Studio (Launcher)
       ansible.builtin.template:
-        src: ../../comum/templates/menulibre-template.desktop
+        src: ../../common/templates/menulibre-template.desktop
         dest: /home/{{user.login}}/.local/share/applications/menulibre-aqua-data-studio.desktop
       vars:
         app: 

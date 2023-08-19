@@ -55,7 +55,7 @@
 
   - name: Configura o item de menu do Apache Directory Studio (Launcher)
     ansible.builtin.template:
-      src: ../../comum/templates/menulibre-template.desktop
+      src: ../../common/templates/menulibre-template.desktop
       dest: /home/{{user.login}}/.local/share/applications/menulibre-apache-directory-studio.desktop
     vars:
       app: 

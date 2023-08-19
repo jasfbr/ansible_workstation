@@ -1,0 +1,11 @@
+---
+
+argument_specs:
+  restore_configuration_foldes:
+    short_description: Restaura as pastas de configuração de uma aplicação
+    options:
+      pastas:
+        type: list
+        required: true
+
+...

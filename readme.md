@@ -112,6 +112,7 @@ Executar a playbook como o novo usuário:
 |app-apache_jmeter-restaurar|Restaurar o Apache JMeter|
 |app-aqua_data_studio-instalar|Instala o Aqua Data Studio|
 |app-aqua_data_studio-restaurar|Restaura o Aqua Data Studio|
+|app-bb_warsaw-instalar|Instala o warsaw para o Banco do Brasil|
 |app-dbeaver-instalar|Instala o DBeaver|
 |app-dbeaver-restaurar|Instala o DBeaver|
 |app-dbwrench-instalar|Instala o DBwrench|
@@ -124,7 +125,8 @@ Executar a playbook como o novo usuário:
 |app-vim-restaurar|Restaura o vim|
 |app-visual_studio_code-instalar|Instala o Visual Studio Code|
 |app-visual_studio_code-restaurar|Restaura o Visual Studio Code|
-|comum|Esta função disponibiliza recursos utilizados por 2 ou mais funções|
+|app-vlc-instalar|Instala o VLC media player|
+|common|Esta função disponibiliza recursos utilizados por 2 ou mais funções|
 |java-instalar_jdk8|Instala a jdk-8|
 |linux-atualizar|Atualiza o sistema operacional|
 |linux-cria_usuario|Cria o grupo e a conta do usuário da estação|

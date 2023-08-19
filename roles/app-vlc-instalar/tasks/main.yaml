@@ -1,0 +1,21 @@
+---
+
+- name: Instala o Vlc
+  ansible.builtin.apt: 
+    update_cache: true
+    name:
+      - vlc 
+    state: present
+  become: true
+
+- name: restura as pastas de configuração
+  ansible.builtin.include_role:
+    name: common
+    tasks_from: restore_configuration_foldes.yaml
+  vars:
+    pastas:
+      - '.config/vlc'
+      - '.local/share/vlc'
+  when: restaurar_backup
+
+...
