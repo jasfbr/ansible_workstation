@@ -1,4 +1,4 @@
-# ansible-playbook -e@tmp/vault-notebook.yaml playbook-instalar.yaml --syntax-check
+# ansible-playbook -e@tmp/vault-gaio.yaml playbook-instalar.yaml --syntax-check
 # Antes de executar, criar um arquivo vault de acordo com o modelo: vault-modelo.yaml
 ---
 
@@ -27,5 +27,6 @@
 #  - app-synergy-instalar
 #  - app-jbosseap7.1-cli-instalar
 #  - app-jbosseap6.4-cli-instalar
+#  - app-bb-warsaw-instalar
 
 ...
