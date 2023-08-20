@@ -6,4 +6,8 @@
     state: restarted
   become: true
 
+- name: reiniciar_bashrc
+  ansible.builtin.shell:
+    cmd: source /home/{{user.login}}/.bashrc
+
 ...

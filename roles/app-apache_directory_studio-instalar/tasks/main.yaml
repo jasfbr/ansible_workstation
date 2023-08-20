@@ -64,12 +64,12 @@
         icon: /opt/apache/ApacheDirectoryStudio/icon.xpm
         exec: /opt/apache/ApacheDirectoryStudio/ApacheDirectoryStudio
 
-- name: Restaura os arquivos e pastas de configuração
+- name: Restaura o backup
   ansible.builtin.include_role:
     name: common
     tasks_from: restore_configuration_files.yaml
   vars:
-    soures:
+    sources:
       - '.ApacheDirectoryStudio/'
   when: restaurar_backup
 

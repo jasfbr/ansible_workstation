@@ -6,28 +6,33 @@
   hosts: localhost 
 
   roles:
-#  - linux-atualizar
-#  - linux-home-configurar
-#  - linux-home-configurar_painel
-#  - linux-network-vpn-configurar
-#  - app-vim-instalar
-#  - app-terminator-instalar
-#  - app-nautilus-instalar
-#  - app-dbeaver-instalar
-#  - app-visual_studio_code-instalar
-#  - app-aqua_data_studio-instalar
-#  - app-apache_jmeter-instalar
-#  - app-apache_directory_studio-instalar
-#  - app-dbwrench-instalar
-#  - app-google_chrome-instalar
-#  - app-pgadmin4-instalar
-#  - app-firefox-instalar
-#  - app-nomachine-instalar
-#  - app-vmware_remote_console-instalar
-#  - app-synergy-instalar
-#  - app-jbosseap7.1-cli-instalar
-#  - app-jbosseap6.4-cli-instalar
-#  - app-bb_warsaw-instalar
-#  - app-downloadhelper_coapp-instalar
+  - linux-atualizar
+  - linux-home-configurar
+  - linux-home-configurar_painel
+  - linux-network-vpn-configurar
+  - app-apache_directory_studio-instalar
+  - app-apache_jmeter-instalar
+  - app-aqua_data_studio-instalar
+  - app-bb_warsaw-instalar
+  - app-dbeaver-instalar
+  - app-dbwrench-instalar
+  - app-downloadhelper_coapp-instalar
+  - app-firefox-instalar
+  - app-google_chrome-instalar
+  - app-jbosseap6.4-cli-instalar
+  - app-jbosseap7.1-cli-instalar
+  - app-libreoffice-restaurar
+  - app-nautilus-instalar
+  - app-nomachine-instalar
+  - app-pgadmin4-instalar
+  - app-spotify-instalar
+  - app-synergy-instalar
+  - app-terminator-instalar
+  - app-thunderbird-restaurar
+  - app-vim-instalar
+  - app-virtual_box-instalar
+  - app-visual_studio_code-instalar
+  - app-vlc-instalar
+  - app-vmware_remote_console-instalar
 
 ...

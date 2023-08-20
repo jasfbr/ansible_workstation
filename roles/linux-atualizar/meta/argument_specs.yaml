@@ -1,0 +1,12 @@
+---
+
+argument_specs:
+  main:
+    short_description: Atualiza todos os pacotes instalados via apt
+    options:
+      reiniciar:
+        type: bool
+        required: false
+        default: false
+
+...

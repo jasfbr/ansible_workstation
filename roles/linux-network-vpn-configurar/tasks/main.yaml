@@ -18,4 +18,37 @@
   notify: reiniciar_NetworkManager
   become: true
 
+- name: Restaura o script rotas_vpn.sh
+  block:
+
+    - name: 'Cria o diretório /home/{{user.login}}/applications/scripts'
+      ansible.builtin.file:
+        path: '/home/{{user.login}}/applications/scripts'
+        state: directory
+        recurse: true
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+      become: true
+
+    - name: 'Restaura o script rotas_vpn.sh'
+      ansible.builtin.copy:
+        src: '{{path_to_backup}}/home/{{user.login}}/applications/scripts/rotas_vpn.sh'
+        dest: '/home/{{user.login}}/applications/scripts/rotas_vpn.sh'
+        local_follow: false
+        mode: preserve
+        owner: '{{user.login}}'
+        group: '{{user.group}}'
+
+    - name: Cria o alias para o script 
+      ansible.builtin.lineinfile:
+        path: '/home/{{user.login}}/.bash_aliases'
+        line: 'alias rotas_vpn=~/applications/scripts/rotas_vpn.sh'
+        backup: true
+        create: true
+        state: present
+      notify: 
+        - reiniciar_bashrc
+
+  when: restaurar_backup
+
 ...

@@ -24,12 +24,12 @@
     owner: '{{user.login}}'
     group: '{{user.group}}'
 
-- name: Restaura os arquivos e pastas de configuração
+- name: Restaura o backup
   ansible.builtin.include_role:
     name: common
     tasks_from: restore_configuration_files.yaml
   vars:
-    soures:
+    sources:
       - '.vimrc'
   when: restaurar_backup
 

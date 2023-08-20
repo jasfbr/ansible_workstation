@@ -2,7 +2,7 @@
 
 argument_specs:
   restore_configuration_files:
-    short_description: Restaura os arquivos e pastas de configuração de uma aplicação
+    short_description: Restaura os arquivos e pastas de configuração de uma aplicação para o home do usuário
     options:
       sources:
         type: list

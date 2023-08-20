@@ -32,12 +32,12 @@
           icon: '/opt/aquafold/datastudio-16.0.5-9/datastudio-24x24.png'
           exec: '/opt/aquafold/datastudio-16.0.5-9/datastudio.sh'
 
-- name: Restaura os arquivos e pastas de configuração
+- name: Restaura o backup
   ansible.builtin.include_role:
     name: common
     tasks_from: restore_configuration_files.yaml
   vars:
-    soures:
+    sources:
       - '.datastudio/'
   when: restaurar_backup
 

@@ -6,5 +6,6 @@
     upgrade: true
     autoremove: true
   become: true
+  notify: reiniciar_so
 
 ...

@@ -133,13 +133,13 @@ Executar a playbook como o novo usuário:
 |app-vlc-instalar|Instala o VLC media player|Sim|
 |app-vmware_remote_console-instalar|Instalar o VMware Remote Console||
 |common|Esta função disponibiliza recursos utilizados por 2 ou mais funções||
-|java-instalar_jdk8|Instala a jdk-8||
 |linux-atualizar|Atualiza o sistema operacional||
 |linux-cria_usuario|Cria o grupo e a conta do usuário da estação||
 |linux-home-configurar|Configura o home do usuário||
 |linux-home-configura_painel|Configura o painel do home de acordo com o tipo da estação||
 |linux-home-restaurar|Restaura o home do usuário||
 |linux-instalacar_pacotes_padroes|Instala os pacotes padrões que normalmente uso||
+|linux-network-vpn-configurar|Configurar a VPN da Prodepa|Sim|
 |linux-tunning|Faz a configuração fina do sistema operacional (tunning)||
 |
 
@@ -233,6 +233,8 @@ https://docs.ansible.com/ansible/latest/collections/ansible/builtin/systemd_serv
 https://docs.ansible.com/ansible/latest/collections/community/general/alternatives_module.html
 https://docs.ansible.com/ansible/latest/collections/community/general/xfconf_module.html
 https://docs.ansible.com/ansible/latest/collections/community/general/snap_module.html
+
+https://docs.ansible.com/ansible/latest/dev_guide/developing_program_flow_modules.html
 
 https://docs.ansible.com/ansible/latest/plugins/lookup.html
 

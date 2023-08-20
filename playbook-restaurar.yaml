@@ -1,33 +1,40 @@
-# ansible-playbook -e@tmp/vault-notebook.yaml playbook-restaurar.yaml --syntax-check
+# ansible-playbook -e@tmp/vault-vm-xubuntu22-dsk01.yaml playbook-restaurar.yaml --syntax-check
 # Antes de executar, criar um arquivo vault de acordo com o modelo: vault-modelo.yaml
 ---
 
 - name: Configurar a estação de trabalho
   hosts: localhost 
 
+  vars:
+    restaurar_backup: true
+
   roles:
-#  - linux-atualizar
-#  - linux-home-restaurar
-#  - linux-network-vpn-restaurar
-#  - app-apache_directory_studio-restaurar
-#  - app-apache_jmeter-restaurar
-#  - app-aqua_data_studio-restaurar
-#  - app-dbeaver-restaurar
-#  - app-dbwrench-restaurar
-#  - app-firefox-restaurar
-#  - app-google_chrome-restaurar
-#  - app-libreoffice-restaurar
-#  - app-nautilus-restaurar
-#  - app-pgadmin4-restaurar
-#  - app-spotify-restaurar
-#  - app-terminator-restaurar
-#  - app-thunderbird-restaurar
-#  - app-vim-restaurar
-#  - app-virtual_box-restaurar
-#  - app-visual_studio_code-restaurar
-#  - app-nomachine-restaurar
-#  - app-synergy-restaurar
-#  - app-jbosseap7.1-cli-instalar
-#  - app-jbosseap6.4-cli-instalar
+  - linux-atualizar
+  - linux-home-restaurar
+  - linux-network-vpn-configurar
+  - app-apache_directory_studio-instalar
+  - app-apache_jmeter-instalar
+  - app-aqua_data_studio-instalar
+  - app-bb_warsaw-instalar
+  - app-dbeaver-instalar
+  - app-dbwrench-instalar
+  - app-downloadhelper_coapp-instalar
+  - app-firefox-instalar
+  - app-google_chrome-instalar
+  - app-jbosseap6.4-cli-instalar
+  - app-jbosseap7.1-cli-instalar
+  - app-libreoffice-restaurar
+  - app-nautilus-instalar
+  - app-nomachine-instalar
+  - app-pgadmin4-instalar
+  - app-spotify-instalar
+  - app-synergy-instalar
+  - app-terminator-instalar
+  - app-thunderbird-restaurar
+  - app-vim-instalar
+  - app-virtual_box-instalar
+  - app-visual_studio_code-instalar
+  - app-vlc-instalar
+  - app-vmware_remote_console-instalar
 
 ...

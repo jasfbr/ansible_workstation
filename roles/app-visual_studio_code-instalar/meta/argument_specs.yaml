@@ -1,0 +1,12 @@
+---
+
+argument_specs:
+  main:
+    short_description: Instala o Visual Code Studio
+    options:
+      restaurar_backup:
+        type: bool
+        required: false
+        default: false
+
+...

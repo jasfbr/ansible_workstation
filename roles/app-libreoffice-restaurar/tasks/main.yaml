@@ -1,11 +1,11 @@
 ---
 
-- name: Restaura os arquivos e pastas de configuração
+- name: Restaura o backup
   ansible.builtin.import_role:
     name: common
     tasks_from: restore_configuration_files.yaml
   vars:
-    soures:
+    sources:
       - '.config/libreoffice/'
 
 ...

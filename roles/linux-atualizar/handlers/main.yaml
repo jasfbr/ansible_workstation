@@ -2,5 +2,6 @@
 
 - name: reiniciar_so
   ansible.builtin.reboot:
+  when: reiniciar
 
 ...
