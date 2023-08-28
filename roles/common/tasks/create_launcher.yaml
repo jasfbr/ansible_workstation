@@ -5,7 +5,7 @@
     path: /home/{{user_login}}/.local/share/applications
     state: directory
 
-- name: Configura o item de menu do Apache Directory Studio (Launcher)
+- name: Configura o item de menu da aplicação
   ansible.builtin.template:
     src: menulibre-template.desktop
     dest: '/home/{{user_login}}/.local/share/applications/menulibre-{{app_launch_name}}.desktop'
