@@ -1,0 +1,19 @@
+---
+
+- name: cria o diretório .local/share/applications se não existir
+  ansible.builtin.file:
+    path: /home/{{user_login}}/.local/share/applications
+    state: directory
+
+- name: Configura o item de menu do Apache Directory Studio (Launcher)
+  ansible.builtin.template:
+    src: menulibre-template.desktop
+    dest: '/home/{{user_login}}/.local/share/applications/menulibre-{{app_launch_name}}.desktop'
+  vars:
+    app: 
+      name: '{{app_name}}'
+      comment: '{{app_comment}}'
+      icon: '{{app_icon}}'
+      exec: '{{app_exec}}'
+
+...

@@ -64,14 +64,15 @@
       become: true
 
     - name: Configura o item de menu do Dbwrench (Launcher)
-      ansible.builtin.template:
-        src: ../../common/templates/menulibre-template.desktop
-        dest: /home/{{user.login}}/.local/share/applications/menulibre-dbwrench.desktop
-      vars:
-        app: 
-          name: 'DbWrench'
-          comment: ''
-          icon: '/opt/nizana/dbwrench/dbwrench.png'
-          exec: '/opt/nizana/dbwrench/bin/dbwrench'
+      ansible.builtin.include_role:
+        name: common
+        tasks_from: create_launcher.yaml
+      vars: 
+        user_login: '{{user.login}}'
+        app_launch_name: 'dbwrench'
+        app_name: 'DbWrench'
+        app_comment: ''
+        app_icon: '/opt/nizana/dbwrench/dbwrench.png'
+        app_exec: '/opt/nizana/dbwrench/bin/dbwrench'
 
 ...

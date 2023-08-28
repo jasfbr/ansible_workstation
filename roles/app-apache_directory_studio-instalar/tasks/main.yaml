@@ -54,15 +54,16 @@
     become: true
 
   - name: Configura o item de menu do Apache Directory Studio (Launcher)
-    ansible.builtin.template:
-      src: ../../common/templates/menulibre-template.desktop
-      dest: /home/{{user.login}}/.local/share/applications/menulibre-apache-directory-studio.desktop
-    vars:
-      app: 
-        name: 'Apache Directory Studio'
-        comment: ''
-        icon: /opt/apache/ApacheDirectoryStudio/icon.xpm
-        exec: /opt/apache/ApacheDirectoryStudio/ApacheDirectoryStudio
+    ansible.builtin.include_role:
+      name: common
+      tasks_from: create_launcher.yaml
+    vars: 
+      user_login: '{{user.login}}'
+      app_launch_name: 'apache-directory-studio'
+      app_name: 'Apache Directory Studio'
+      app_comment: ''
+      app_icon: /opt/apache/ApacheDirectoryStudio/icon.xpm
+      app_exec: /opt/apache/ApacheDirectoryStudio/ApacheDirectoryStudio
 
 - name: Restaura o backup
   ansible.builtin.include_role:

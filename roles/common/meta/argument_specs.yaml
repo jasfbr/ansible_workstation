@@ -7,5 +7,27 @@ argument_specs:
       sources:
         type: list
         required: true
+  create_launcher:
+    shirt_description: Configura o item de menu de uma aplicação
+    options:
+      user_login: 
+        type: str
+        required: true
+      app_launch_name:
+        type: str 
+        required: true
+      app_name:
+        type: str
+        required: true
+      app_comment: 
+        type: str
+        required: false
+        default: ''
+      app_icon: 
+        type: str
+        required: true
+      app_exec: 
+        type: str
+        required: true
 
 ...

@@ -21,16 +21,17 @@
         group: root
       become: true
 
-    - name: Configura o item de menu do Aqua Data Studio (Launcher)
-      ansible.builtin.template:
-        src: ../../common/templates/menulibre-template.desktop
-        dest: /home/{{user.login}}/.local/share/applications/menulibre-aqua-data-studio.desktop
-      vars:
-        app: 
-          name: 'Aqua Data Studio'
-          comment: ''
-          icon: '/opt/aquafold/datastudio-16.0.5-9/datastudio-24x24.png'
-          exec: '/opt/aquafold/datastudio-16.0.5-9/datastudio.sh'
+    - name: Configura o item de menu do Apache Directory Studio (Launcher)
+      ansible.builtin.include_role:
+        name: common
+        tasks_from: create_launcher.yaml
+      vars: 
+        user_login: '{{user.login}}'
+        app_launch_name: 'aqua-data-studio'
+        app_name: 'Aqua Data Studio'
+        app_comment: ''
+        app_icon: '/opt/aquafold/datastudio-16.0.5-9/datastudio-24x24.png'
+        app_exec: '/opt/aquafold/datastudio-16.0.5-9/datastudio.sh'
 
 - name: Restaura o backup
   ansible.builtin.include_role:

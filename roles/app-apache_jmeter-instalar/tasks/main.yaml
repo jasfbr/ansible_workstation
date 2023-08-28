@@ -54,14 +54,15 @@
     become: true
 
   - name: Configura o item de menu do Jmeter (Launcher)
-    ansible.builtin.template:
-      src: ../../common/templates/menulibre-template.desktop
-      dest: /home/{{user.login}}/.local/share/applications/menulibre-jmeter.desktop
-    vars:
-      app: 
-        name: 'Apache JMeter'
-        comment: ''
-        icon: /opt/apache/apache-jmeter-5.6.2/docs/images/favicon.png
-        exec: /opt/apache/apache-jmeter-5.6.2/bin/jmeter.sh
+    ansible.builtin.include_role:
+      name: common
+      tasks_from: create_launcher.yaml
+    vars: 
+      user_login: '{{user.login}}'
+      app_launch_name: 'jmeter'
+      app_name: 'Apache JMeter'
+      app_comment: ''
+      app_icon: /opt/apache/apache-jmeter-5.6.2/docs/images/favicon.png
+      app_exec: /opt/apache/apache-jmeter-5.6.2/bin/jmeter.sh
 
 ...

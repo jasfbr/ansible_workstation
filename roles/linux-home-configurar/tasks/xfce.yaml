@@ -40,9 +40,4 @@
     regexp: '\\w\\'
     replace: '\\W\\'
 
-- name: cria o diretório .local/share/applications se não existir
-  ansible.builtin.file:
-    path: /home/{{user.login}}/.local/share/applications
-    state: directory
-
 ...
