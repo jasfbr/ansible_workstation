@@ -20,7 +20,7 @@
     name: '{{user.login}}'
     comment: '{{user.comment}}'
     uid: '{{user.uid}}'
-    password: "{{vault_user_password | password_hash('sha512')}}"
+    password: "{{user.password | password_hash('sha512')}}"
     update_password: on_create
     group: '{{user.group}}'
     groups: '{{user.groups}}'
@@ -30,7 +30,7 @@
     ssh_key_type: rsa
     ssh_key_bits: 4096
     ssh_key_file: '/home/{{user.login}}/.ssh/id_rsa'
-    ssh_key_passphrase: '{{vault_user_key_password}}'
+    ssh_key_passphrase: '{{user.key_password}}'
     force: false
     state: present
   become: true

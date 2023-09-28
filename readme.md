@@ -45,49 +45,52 @@ Como esse projeto foi pensado para ser executado localmente o inventário tem ap
 Antes de executar qualquer playbook devemos configurar as credenciais das contas usadas no arquivo vault. Basta seguir o modelo vault-modelo.yaml. Exemplo:
 
 ```yaml
-# Ansible
-ansible_become_pass: 
+---
+  # Ansible
+  ansible_become_pass: 
 
-# Credenciais do novo usuário
-vault_user_login: 
-vault_user_password: 
-vault_user_comment: 
-vault_user_uid: 
-vault_user_group: 
-vault_user_guid: 
-vault_user_groups: 
-vault_user_key_password: 
+  # Credenciais do novo usuário
+  user:
+    login: 
+    password: 
+    comment: 
+    uid: 
+    group: 
+    guid: 
+    groups: 'root,sys,adm,cdrom,sudo,dip,plugdev,lpadmin,lxd,sambashare'
+    key_password: 
 
-# linux-configura_painel
-vault_tipo_estacao: 'desktop'
+  # linux-configura_painel
+  tipo_estacao: 'notebook'
 
-# linux-restaura_backup
-vault_path_to_backup: 
+  # linux-restaura_backup
+  path_to_backup: 
 
-# app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
-vault_path_to_downloads: 
+  # app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
+  path_to_downloads: 
 
-# linux-network-configurar_vpn
-vpn_domain: 
-vpn_user_login: 
-# vpn_user_password: 
-vpn_group: 
-vpn_group_password: 
-
+  # linux-network-configurar_vpn
+    vpn:
+      domain: 
+      user_login: 
+    # user_password: 
+      group: 
+      group_password: 
+...
 ```
 
 >Onde:<br>
-&mdash; <b>vault_user_login</b>: login do usuário da estação, deve ser o mesmo da sua conta no LDAP<br>
-&mdash; <b>vault_user_password</b>: senha do usuário da estação, deve ser o mesmo da sua conta no LDAP<br>
-&mdash; <b>vault_user_comment</b>: Nome do usuário da estação;<br>
-&mdash; <b>vault_user_uid</b>: uid do usuário da estação, deve ser o mesmo da sua conda no LDAP;<br>
-&mdash; <b>vault_user_group</b>: grupo principal do usuário da estação, deve ser o mesmo da sua conda no LDAP;<br>
-&mdash; <b>vault_user_guid</b>: guid do grupo, deve ser o mesmo do grupo no LDAP;<br>
-&mdash; <b>vault_user_groups</b>: grupos (na estação) que o usuário deve pertencer;<br>
-&mdash; <b>vault_user_key_password</b>: senha para a SSH key;<br>
-&mdash; <b>vault_tipo_estacao</b>: Tipo da configuração do painel no XFCE, pode ser: desktop ou notebook;<br>
-&mdash; <b>vault_path_to_backup</b>: Caminho até a pasta do backup que deve ser restaurado;<br>
-&mdash; <b>vault_path_to_downloads</b>: Caminho até a pasta de downloads.<br>
+&mdash; <b>user.login</b>: login do usuário da estação, deve ser o mesmo da sua conta no LDAP<br>
+&mdash; <b>user.password</b>: senha do usuário da estação, deve ser o mesmo da sua conta no LDAP<br>
+&mdash; <b>user.comment</b>: Nome do usuário da estação;<br>
+&mdash; <b>user.uid</b>: uid do usuário da estação, deve ser o mesmo da sua conda no LDAP;<br>
+&mdash; <b>user.group</b>: grupo principal do usuário da estação, deve ser o mesmo da sua conda no LDAP;<br>
+&mdash; <b>user.guid</b>: guid do grupo, deve ser o mesmo do grupo no LDAP;<br>
+&mdash; <b>user.groups</b>: grupos (na estação) que o usuário deve pertencer;<br>
+&mdash; <b>user.key_password</b>: senha para a SSH key;<br>
+&mdash; <b>tipo_estacao</b>: Tipo da configuração do painel no XFCE, pode ser: desktop ou notebook;<br>
+&mdash; <b>path_to_backup</b>: Caminho até a pasta do backup que deve ser restaurado;<br>
+&mdash; <b>path_to_downloads</b>: Caminho até a pasta de downloads.<br>
 
 >Obs: Estamos usando as credenciais da conta do usuário no LDAP para facilitar futura configuração da autenticação no LDAP.
 

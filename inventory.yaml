@@ -3,19 +3,7 @@
 all:
   vars:
     ansible_connection: local
-    ansible_become_pass: '{{vault_ansible_ssh_pass}}'
     current_desktop: '{{ansible_env.XDG_CURRENT_DESKTOP | lower}}'
-    path_to_backup: '{{vault_path_to_backup}}'
-    path_to_downloads: '{{vault_path_to_downloads}}'
-    tipo_estacao: '{{vault_tipo_estacao}}'
-    restaurar_backup: true
-    user:
-      login: '{{vault_user_login}}'
-      comment: '{{vault_user_comment}}'
-      uid: '{{vault_user_uid}}'
-      group: '{{vault_user_group}}'
-      guid: '{{vault_user_guid}}'
-      groups: '{{vault_user_groups}}'
   hosts:
     localhost:
 
