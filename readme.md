@@ -13,6 +13,19 @@ Para configurar um host:
 <br>
 <br>
 
+# Github
+
+Para que o git use a chave certa do repositório é necessário substiuir o <b>github.com</b> pelo alias da chave no comando da clonagem, como exemplo o alias da chave deste repositório é <b>github.com-ansible_workstation</b>.
+
+Comando com a URL original, copiada do site do github: 
+```bash
+git clone -b development git@github.com:jasfbr/ansible_workstation.git
+```
+
+```bash
+git clone -b development git@github.com-ansible_workstation:jasfbr/ansible_workstation.git
+```
+
 # Instalação e configuração do Ansible
 
 ## Instalação
