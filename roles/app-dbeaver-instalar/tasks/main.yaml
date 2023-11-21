@@ -5,13 +5,13 @@
 
     - name: Adiciona a chave do repositório
       ansible.builtin.get_url:
-        url: https://dbeaver.io/debs/dbeaver.gpg.key
-        dest: /etc/apt/keyrings/dbeaver.gpg.key
+        url: '{{app.dbeaver.key.uri}}/{{app.dbeaver.key.file}}'
+        dest: '/etc/apt/keyrings/{{app.dbeaver.key.file}}'
       become: true
 
     - name: Adiciona o repositório
       ansible.builtin.apt_repository:
-        repo: 'deb [signed-by=/etc/apt/keyrings/dbeaver.gpg.key] https://dbeaver.io/debs/dbeaver-ce /'
+        repo: 'deb [signed-by=/etc/apt/keyrings/{{app.dbeaver.key.file}}] {{app.dbeaver.repository}}'
         filename: dbeaver-ce
         state: present
       become: true

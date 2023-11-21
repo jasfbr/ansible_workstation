@@ -15,20 +15,20 @@
 
     - name: Verifica se o arquivo existe
       ansible.builtin.stat:
-        path: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
+        path: '{{app.jmeter.download_path}}/{{app.jmeter.file}}'
       register: file_status
 
-    - name: Cria o diretório '{{path_to_downloads}}/apache/jmeter'
+    - name: Cria o diretório '{{app.jmeter.download_path}}'
       ansible.builtin.file:
-        path: '{{path_to_downloads}}/apache/jmeter'
+        path: '{{app.jmeter.download_path}}'
         state: directory
         recurse: true
       when: not file_status.stat.exists
 
     - name: Baixa o arquivo
       ansible.builtin.get_url:
-        url: 'https://dlcdn.apache.org/binaries/apache-jmeter-5.6.2.tgz'
-        dest: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
+        url: '{{app.jmeter.uri}}/{{app.jmeter.file}}'
+        dest: '{{app.jmeter.download_path}}/{{app.jmeter.file}}'
         decompress: false
         owner: '{{user.login}}'
         group: '{{user.group}}'
@@ -44,16 +44,23 @@
       state: directory 
     become: true
 
-  - name: Descompacta o pacote apache-jmeter-5.6.2.tgz
+  - name: 'Descompacta o pacote {{app.jmeter.file}}'
     ansible.builtin.unarchive:
-      src: '{{path_to_downloads}}/apache/apache-jmeter-5.6.2.tgz'
+      src: '{{app.jmeter.download_path}}/{{app.jmeter.file}}'
       dest: /opt/apache
       copy: false 
       owner: root
       group: root
     become: true
 
-  - name: Configura o item de menu do Jmeter (Launcher)
+  - name: Cria o link simbólico 
+    ansible.builtin.file:
+      src: '/opt/apache/{{app.jmeter.install_dir}}'
+      dest: '/opt/apache/apache-jmeter'
+      state: link
+    become: true
+
+  - name: Configura o item de menu (Launcher)
     ansible.builtin.include_role:
       name: common
       tasks_from: create_launcher.yaml
@@ -62,7 +69,7 @@
       app_launch_name: 'jmeter'
       app_name: 'Apache JMeter'
       app_comment: ''
-      app_icon: /opt/apache/apache-jmeter-5.6.2/docs/images/favicon.png
-      app_exec: /opt/apache/apache-jmeter-5.6.2/bin/jmeter.sh
+      app_icon: '/opt/apache/apache-jmeter/docs/images/favicon.png'
+      app_exec: '/opt/apache/apache-jmeter/bin/jmeter.sh'
 
 ...

@@ -1,34 +1,32 @@
 ---
 
-  # Ansible
-  ansible_become_pass: 
+# Ansible
+ansible_become_pass: 
 
-  # Credenciais do novo usuário
-  user:
-    login: 
-    password: 
-    comment: 
-    uid: 
-    group: 
-    guid: 
-    groups: 'root,sys,adm,cdrom,sudo,dip,plugdev,lpadmin,lxd,sambashare'
-    key_password: 
+# Credenciais do novo usuário
+user:
+  login: 
+  password: 
+  comment: 
+  uid: 
+  group: 
+  guid: 
+  groups: 'root,sys,adm,cdrom,sudo,dip,plugdev,lpadmin,lxd,sambashare'
+  key_password: 
 
-  # linux-configura_painel
-  tipo_estacao: 'notebook'
+# linux-configura_painel
+tipo_estacao: 'desktop'
 
-  # linux-restaura_backup
-  path_to_backup: 
+# linux-restaura_backup
+backup_path: 
 
-  # app-apache_directory_studio-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-apache_jmeter-instalar
-  path_to_downloads: 
+# app-apache_directory_studio-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-apache_jmeter-instalar
+downloads_path: 
 
-  # linux-network-configurar_vpn
-  vpn:
-    domain: 
-    user_login: 
-  # user_password: 
-    group: 
-    group_password: 
+# linux-network-configurar_vpn
+vpn:
+  domain: 
+  user_login: 
+  group: 
 
 ...

@@ -2,7 +2,7 @@
 
 - name: Restaura os arquivos e pastas de configuração
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/home/{{user.login}}/{{item}}'
+    src: '{{backup_path}}/home/{{user.login}}/{{item}}'
     dest: '/home/{{user.login}}/{{item}}'
     local_follow: false
     mode: preserve

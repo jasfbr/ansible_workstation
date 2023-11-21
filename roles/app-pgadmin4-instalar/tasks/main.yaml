@@ -5,17 +5,17 @@
 
     - name: Adiciona a chave do repositório
       ansible.builtin.get_url:
-        url: https://www.pgadmin.org/static/packages_pgadmin_org.pub
-        dest: /etc/apt/keyrings/packages_pgadmin_org.pub
+        url: '{{app.pgadmin.key.uri}}/{{app.pgadmin.key.file}}'
+        dest: '/etc/apt/keyrings/{{app.pgadmin.key.file}}'
       become: true
 
     - name: Adiciona o repositório
       ansible.builtin.apt_repository:
-        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/packages_pgadmin_org.pub] https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/{{ansible_distribution_release}} pgadmin4 main'
+        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/{{app.pgadmin.key.file}}] {{app.pgadmin.repository}}'
         filename: pgadmin4
         state: present
       become: true
-      
+
     - name: Instala o PgAdmin4
       ansible.builtin.apt: 
         update_cache: true

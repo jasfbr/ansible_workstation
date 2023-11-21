@@ -2,7 +2,7 @@
 
 - name: Restaura o /etc/hosts
   ansible.builtin.copy:
-    src: '{{path_to_backup}}/etc/hosts'
+    src: '{{backup_path}}/etc/hosts'
     dest: /etc/hosts
     mode: preserve
     owner: root
@@ -14,7 +14,7 @@
 
     - name: 'Restaura a pasta applications/scripts'
       ansible.builtin.copy:
-        src: '{{path_to_backup}}/home/{{user.login}}/applications/scripts/'
+        src: '{{backup_path}}/home/{{user.login}}/applications/scripts/'
         dest: '/home/{{user.login}}/applications/scripts/'
         mode: preserve
         owner: '{{user.login}}'
@@ -38,7 +38,7 @@
 
   - name: Copia as chaves
     ansible.builtin.copy:
-      src: '{{path_to_backup}}/home/{{user.login}}/.ssh/'
+      src: '{{backup_path}}/home/{{user.login}}/.ssh/'
       dest: '/home/{{user.login}}/.ssh/'
       owner: '{{user.login}}'
       group: '{{user.group}}'
@@ -66,7 +66,7 @@
 
     - name: 'Restaura o arquivo /home/{{user.login}}/applications/background'
       ansible.builtin.copy:
-        src: '{{path_to_backup}}/home/{{user.login}}/applications/background/'
+        src: '{{backup_path}}/home/{{user.login}}/applications/background/'
         dest: '/home/{{user.login}}/applications/background/'
         local_follow: false
         mode: preserve

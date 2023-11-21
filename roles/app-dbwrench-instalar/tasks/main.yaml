@@ -15,13 +15,13 @@
 
         - name: Verifica se o arquivo existe
           ansible.builtin.stat:
-            path: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+            path: '{{app.dbwrench.download_path}}/{{app.dbwrench.file}}'
           register: file_status
   
         - name: Baixa o arquivo
           ansible.builtin.get_url:
             url: 'https://dbwrench.com/download/files/v4/dbwrench.zip'
-            dest: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+            dest: '{{app.dbwrench.download_path}}/{{app.dbwrench.file}}'
             decompress: false
             owner: '{{user.login}}'
             group: '{{user.group}}'
@@ -37,9 +37,9 @@
         state: directory 
       become: true
 
-    - name: Descompacta o pacote apache-jmeter-5.6.2.tgz
+    - name: 'Descompacta o pacote {{app.dbwrench.file}}'
       ansible.builtin.unarchive:
-        src: '{{path_to_downloads}}/sgbd/dbwrench/dbwrench.zip'
+        src: '{{app.dbwrench.download_path}}/{{app.dbwrench.file}}'
         dest: /opt/nizana
         copy: false 
         owner: root
@@ -63,7 +63,7 @@
         group: root
       become: true
 
-    - name: Configura o item de menu do Dbwrench (Launcher)
+    - name: Configura o item de menu (Launcher)
       ansible.builtin.include_role:
         name: common
         tasks_from: create_launcher.yaml

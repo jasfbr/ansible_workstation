@@ -19,7 +19,7 @@
 
     - name: 'Descompacta o pacote jboss-eap-7.1.0.zip'
       ansible.builtin.unarchive:
-        src: '{{path_to_downloads}}/redhat/jboss-eap-7.1.0.zip'
+        src: '{{app.jbosseap7.download_path}}/{{app.jbosseap7.file}}'
         dest: '/opt/redhat'
         copy: false
         owner: root

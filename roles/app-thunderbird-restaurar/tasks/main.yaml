@@ -18,7 +18,7 @@
     owner: '{{user.login}}'
     group: '{{user.group}}'
   with_items:
-    - {src: '{{path_to_backup}}/home/{{user.login}}/.thunderbird/', dest: '/home/{{user.login}}/.thunderbird/'}
-    - {src: '{{path_to_backup}}/u01/aplicativos/thunderbird/', dest: '/u01/aplicativos/thunderbird/'}
+    - {src: '{{backup_path}}/home/{{user.login}}/.thunderbird/', dest: '/home/{{user.login}}/.thunderbird/'}
+    - {src: '{{backup_path}}/u01/aplicativos/thunderbird/', dest: '/u01/aplicativos/thunderbird/'}
 
 ...

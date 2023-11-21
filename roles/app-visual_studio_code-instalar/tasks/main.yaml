@@ -5,16 +5,16 @@
 
     - name: adiciona a chave do repositório
       ansible.builtin.get_url:
-        url: https://packages.microsoft.com/keys/microsoft.asc
-        dest: /etc/apt/keyrings/microsoft.asc
+        url: '{{app.vscode.key.uri}}/{{app.vscode.key.file}}'
+        dest: /etc/apt/keyrings/{{app.vscode.key.file}}
       become: true
 
     - name: adiciona o repositório
       ansible.builtin.apt_repository:
-        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/microsoft.asc] https://packages.microsoft.com/repos/vscode stable main'
+        repo: 'deb [arch=amd64 signed-by=/etc/apt/keyrings/{{app.vscode.key.file}}] {{app.vscode.repository}}'
         state: present
       become: true
-      
+
     - name: instala o Visual Studio Code
       ansible.builtin.apt: 
         update_cache: true

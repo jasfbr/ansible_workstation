@@ -12,16 +12,23 @@
         state: directory 
       become: true
 
-    - name: Descompacta o pacote datastudio-16.0.5-9.tar-bz2
+    - name: 'Descompacta o pacote {{app.datastudio.file}}'
       ansible.builtin.unarchive:
-        src: '{{path_to_downloads}}/sgbd/aquafold/datastudio-16.0.5-9.tar.bz2'
+        src: '{{app.datastudio.download_path}}/{{app.datastudio.file}}'
         dest: '/opt/aquafold'
         copy: false 
         owner: root
         group: root
       become: true
 
-    - name: Configura o item de menu do Apache Directory Studio (Launcher)
+    - name: Cria o link simbólico 
+      ansible.builtin.file:
+        src: '/opt/aquafold/{{app.datastudio.install_dir}}'
+        dest: '/opt/aquafold/datastudio'
+        state: link
+      become: true
+
+    - name: Configura o item de menu (Launcher)
       ansible.builtin.include_role:
         name: common
         tasks_from: create_launcher.yaml
@@ -30,8 +37,8 @@
         app_launch_name: 'aqua-data-studio'
         app_name: 'Aqua Data Studio'
         app_comment: ''
-        app_icon: '/opt/aquafold/datastudio-16.0.5-9/datastudio-24x24.png'
-        app_exec: '/opt/aquafold/datastudio-16.0.5-9/datastudio.sh'
+        app_icon: '/opt/aquafold/datastudio/datastudio-24x24.png'
+        app_exec: '/opt/aquafold/datastudio/datastudio.sh'
 
 - name: Restaura o backup
   ansible.builtin.include_role:

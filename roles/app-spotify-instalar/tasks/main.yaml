@@ -5,13 +5,13 @@
 
   - name: Adiciona a chave do repositório
     ansible.builtin.apt_key:
-      url: https://download.spotify.com/debian/pubkey_7A3A762FAFD4A51F.gpg
-      keyring: /etc/apt/trusted.gpg.d/spotify.gpg
+      url: '{{app.spotify.key.uri}}/{{app.spotify.key.file}}'
+      keyring: '/etc/apt/trusted.gpg.d/{{app.spotify.key.file}}'
       state: present
 
   - name: Adiciona o repositório
     ansible.builtin.apt_repository:
-      repo: 'deb [signed-by=/etc/apt/trusted.gpg.d/spotify.gpg] http://repository.spotify.com stable non-free'
+      repo: 'deb [signed-by=/etc/apt/trusted.gpg.d/{{app.spotify.key.file}}] {{app.spotify.repository}}'
       filename: spotify.list
       state: present
 

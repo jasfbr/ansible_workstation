@@ -4,6 +4,81 @@ all:
   vars:
     ansible_connection: local
     current_desktop: '{{ansible_env.XDG_CURRENT_DESKTOP | lower}}'
+    app:
+      directory_studio:
+        uri: 'http://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17'
+        file: 'ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz'
+        path_download: '{{downloads_path}}/apache'
+      jmeter:
+        uri: 'https://dlcdn.apache.org/jmeter/binaries'
+        file: 'apache-jmeter-5.6.2.tgz'
+        install_dir: 'apache-jmeter-5.6.2'
+        download_path: '{{downloads_path}}/apache'
+      datastudio:
+        file: 'datastudio-16.0.5-9.tar.bz2'
+        install_dir: 'datastudio-16.0.5-9'
+        download_path: '{{downloads_path}}/sgbd/aquafold/'
+      dbeaver:
+        repository: 'https://dbeaver.io/debs/dbeaver-ce /'
+        key:
+          uri: 'https://dbeaver.io/debs/'
+          file: 'dbeaver.gpg.key'
+      dbwrench:
+        uri: 'https://dbwrench.com/download/files/v4'
+        file: 'dbwrench.zip'
+        download_path: '{{downloads_path}}/sgbd/dbwrench'
+      chrome:
+        uri: 'https://dl.google.com/linux/direct'
+        file: google-chrome-stable_current_amd64.deb
+        download_path: '{{downloads_path}}/google/chrome/'
+      jbosseap6:
+        jdk:
+          file: 'jdk-7u80-linux-x64.tar.gz'
+          download_path: '{{downloads_path}}/oracle'
+        file: 'jboss-eap-6.4.0.zip'
+        download_path: '{{downloads_path}}/redhat'
+      jbosseap7:
+        file: 'jboss-eap-7.1.0.zip'
+        download_path: '{{downloads_path}}/redhat'
+      nomachine:
+        uri: 'https://download.nomachine.com/download/8.8/Linux'
+        file: 'nomachine_8.8.1_1_amd64.deb'
+        download_path: '{{downloads_path}}/nomachine'
+      pgadmin:
+        repository: 'https://ftp.postgresql.org/pub/pgadmin/pgadmin4/apt/{{ansible_distribution_release}} pgadmin4 main'
+        key:
+          uri: 'https://www.pgadmin.org/static'
+          file: 'packages_pgadmin_org.pub'
+      virtualbox:
+        repository: 'https://download.virtualbox.org/virtualbox/debian {{ansible_distribution_release}} contrib'
+        key:
+          uri: 'https://www.virtualbox.org/download'
+          file: 'oracle_vbox_2016.asc'
+      vscode:
+        repository: 'https://packages.microsoft.com/repos/vscode stable main'
+        key:
+          uri: 'https://packages.microsoft.com/keys'
+          file: 'microsoft.asc'
+      vmrc:
+        file: 'VMware-Remote-Console-12.0.1-18113358.x86_64.bundle'
+        download_path: '{{downloads_path}}/vmware'
+      warsaw:
+        uri: 'https://cloud.gastecnologia.com.br/bb/downloads/ws'
+        file: 'warsaw_setup64.deb'
+        download_path: '{{downloads_path}}/gastecnologia'
+      downloadhelper:
+        uri: 'https://github.com/mi-g/vdhcoapp/releases/download/v1.6.3'
+        file: 'net.downloadhelper.coapp-1.6.3-1_amd64.deb'
+        download_path: '{{downloads_path}}/downloadhelper'
+      spotify:
+        repository: 'http://repository.spotify.com stable non-free'
+        key:
+          uri: 'https://download.spotify.com/debian'
+          file: 'dbeaver.gpg.key'
+      synergy:
+        file: 'synergy-linux_x64-libssl3-v3.0.73.7-rc2.deb'
+        download_path: '{{downloads_path}}/symless'
+
   hosts:
     localhost:
 

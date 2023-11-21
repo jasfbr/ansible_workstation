@@ -32,7 +32,7 @@
 
     - name: 'Restaura o script rotas_vpn.sh'
       ansible.builtin.copy:
-        src: '{{path_to_backup}}/home/{{user.login}}/applications/scripts/rotas_vpn.sh'
+        src: '{{backup_path}}/home/{{user.login}}/applications/scripts/rotas_vpn.sh'
         dest: '/home/{{user.login}}/applications/scripts/rotas_vpn.sh'
         local_follow: false
         mode: preserve

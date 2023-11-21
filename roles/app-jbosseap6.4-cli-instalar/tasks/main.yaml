@@ -14,9 +14,9 @@
             mode: '0755'
             state: directory
 
-        - name: 'Descompacta o pacote jdk-7u80-linux-x64.tar.gz'
+        - name: 'Descompacta o pacote {{app.jbosseap6.jdk.file}}'
           ansible.builtin.unarchive:
-            src: '{{path_to_downloads}}/oracle/jdk-7u80-linux-x64.tar.gz'
+            src: '{{app.jbosseap6.jdk.download_path}}/{{app.jbosseap6.jdk.file}}'
             dest: '/opt/oracle'
             copy: false
             owner: root
@@ -30,9 +30,9 @@
         mode: '0755'
         state: directory
 
-    - name: 'Descompacta o pacote jboss-eap-6.4.0.zip'
+    - name: 'Descompacta o pacote {{app.jbosseap6.file}}'
       ansible.builtin.unarchive:
-        src: '{{path_to_downloads}}/redhat/jboss-eap-6.4.0.zip'
+        src: '{{app.jbosseap6.download_path}}/{{app.jbosseap6.file}}'
         dest: '/opt/redhat'
         copy: false
         owner: root

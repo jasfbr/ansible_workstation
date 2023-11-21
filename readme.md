@@ -46,36 +46,34 @@ Antes de executar qualquer playbook devemos configurar as credenciais das contas
 
 ```yaml
 ---
-  # Ansible
-  ansible_become_pass: 
+# Ansible
+ansible_become_pass: 
 
-  # Credenciais do novo usuário
-  user:
-    login: 
-    password: 
-    comment: 
-    uid: 
-    group: 
-    guid: 
-    groups: 'root,sys,adm,cdrom,sudo,dip,plugdev,lpadmin,lxd,sambashare'
-    key_password: 
+# Credenciais do novo usuário
+user:
+  login: 
+  password: 
+  comment: 
+  uid: 
+  group: 
+  guid: 
+  groups: 'root,sys,adm,cdrom,sudo,dip,plugdev,lpadmin,lxd,sambashare'
+  key_password: 
 
-  # linux-configura_painel
-  tipo_estacao: 'notebook'
+# linux-configura_painel
+tipo_estacao: 'notebook'
 
-  # linux-restaura_backup
-  path_to_backup: 
+# linux-restaura_backup
+backup_path: 
 
-  # app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
-  path_to_downloads: 
+# app-apacheds-instalar app-aqua_data_studio-instalar app-dbwrench-instalar app-jmeter-instalar
+downloads_path: 
 
-  # linux-network-configurar_vpn
-    vpn:
-      domain: 
-      user_login: 
-    # user_password: 
-      group: 
-      group_password: 
+# linux-network-configurar_vpn
+vpn:
+  domain: 
+  user_login: 
+  group: 
 ...
 ```
 
@@ -89,8 +87,8 @@ Antes de executar qualquer playbook devemos configurar as credenciais das contas
 &mdash; <b>user.groups</b>: grupos (na estação) que o usuário deve pertencer;<br>
 &mdash; <b>user.key_password</b>: senha para a SSH key;<br>
 &mdash; <b>tipo_estacao</b>: Tipo da configuração do painel no XFCE, pode ser: desktop ou notebook;<br>
-&mdash; <b>path_to_backup</b>: Caminho até a pasta do backup que deve ser restaurado;<br>
-&mdash; <b>path_to_downloads</b>: Caminho até a pasta de downloads.<br>
+&mdash; <b>backup_path</b>: Caminho até a pasta do backup que deve ser restaurado;<br>
+&mdash; <b>downloads_path</b>: Caminho até a pasta de downloads.<br>
 
 >Obs: Estamos usando as credenciais da conta do usuário no LDAP para facilitar futura configuração da autenticação no LDAP.
 
@@ -166,7 +164,7 @@ backup-X/
 
 # Testes em uma máquina virtual (VM)
 
-Os testes foram executados em uma vm no Virtual Box, onde foram configurados 2 diretórios compartilhados, a origem do backup (path_to_backup) e o diretório deste projeto, facilitando muito os testes realizados. 
+Os testes foram executados em uma vm no Virtual Box, onde foram configurados 2 diretórios compartilhados, a origem do backup (backup_path) e o diretório deste projeto, facilitando muito os testes realizados. 
 
 Mapeamentos:
 

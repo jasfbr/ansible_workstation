@@ -11,19 +11,16 @@ Domain={{vpn.domain}}
 IKE DH Group=dh2
 IPSec ID={{vpn.group}}
 IPSec gateway={{vpn.domain}}
-IPSec secret-flags=0
+IPSec secret-flags=2
 Local Port=0
 NAT Traversal Mode=natt
 Perfect Forward Secrecy=server
 Vendor=cisco
 Xauth password-flags=2
 Xauth username={{vpn.user_login}}
-ipsec-secret-type=save
+ipsec-secret-type=ask
 xauth-password-type=ask
 service-type=org.freedesktop.NetworkManager.vpnc
-
-[vpn-secrets]
-IPSec secret={{vpn.group_password}}
 
 [ipv4]
 method=auto

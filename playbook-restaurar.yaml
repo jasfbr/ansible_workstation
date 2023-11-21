@@ -15,26 +15,24 @@
   - app-apache_directory_studio-instalar
   - app-apache_jmeter-instalar
   - app-aqua_data_studio-instalar
-  - app-bb_warsaw-instalar
   - app-dbeaver-instalar
   - app-dbwrench-instalar
-  - app-downloadhelper_coapp-instalar
   - app-firefox-instalar
   - app-google_chrome-instalar
+  - app-downloadhelper_coapp-instalar
+  - app-bb_warsaw-instalar
   - app-jbosseap6.4-cli-instalar
   - app-jbosseap7.1-cli-instalar
   - app-libreoffice-restaurar
   - app-nautilus-instalar
   - app-nomachine-instalar
   - app-pgadmin4-instalar
-  - app-spotify-instalar
   - app-synergy-instalar
   - app-terminator-instalar
   - app-thunderbird-restaurar
   - app-vim-instalar
   - app-virtual_box-instalar
   - app-visual_studio_code-instalar
-  - app-vlc-instalar
   - app-vmware_remote_console-instalar
 
 ...

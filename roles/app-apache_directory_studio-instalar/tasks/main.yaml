@@ -15,20 +15,20 @@
 
     - name: Verifica se o arquivo existe
       ansible.builtin.stat:
-        path: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+        path: '{{app.directory_studio.path_download}}/{{app.directory_studio.file}}'
       register: file_status
 
-    - name: Cria o diretório '{{path_to_downloads}}/apache/apache_directory_studio'
+    - name: Cria o diretório '{{app.directory_studio.path_download}}'
       ansible.builtin.file:
-        path: '{{path_to_downloads}}/apache/apache_directory_studio'
+        path: '{{downloads_path}}/apache/apache_directory_studio'
         state: directory
         recurse: true
       when: not file_status.stat.exists
 
     - name: Baixa o arquivo
       ansible.builtin.get_url:
-        url: 'https://dlcdn.apache.org/directory/studio/2.0.0.v20210717-M17/ApacheDirectoryStudio-2.0.0.v20210717-M17-linux.gtk.x86_64.tar.gz'
-        dest: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+        url: '{{app.directory_studio.uri}}/{{app.directory_studio.file}}'
+        dest: '{{app.directory_studio.path_download}}/{{app.directory_studio.file}}'
         decompress: false
         owner: '{{user.login}}'
         group: '{{user.group}}'
@@ -44,16 +44,16 @@
       state: directory 
     become: true
 
-  - name: Descompacta o pacote ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz
+  - name: 'Descompacta o pacote {{app.directory_studio.file}}'
     ansible.builtin.unarchive:
-      src: '{{path_to_downloads}}/apache/ApacheDirectoryStudio-2.0.0.v20210717-M17.tar.gz'
+      src: '{{app.directory_studio.path_download}}/{{app.directory_studio.file}}'
       dest: /opt/apache
       copy: false 
       owner: root
       group: root
     become: true
 
-  - name: Configura o item de menu do Apache Directory Studio (Launcher)
+  - name: Configura o item de menu (Launcher)
     ansible.builtin.include_role:
       name: common
       tasks_from: create_launcher.yaml

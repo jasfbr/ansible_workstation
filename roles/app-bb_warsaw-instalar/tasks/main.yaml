@@ -2,13 +2,13 @@
 
 - name: Verifica se o arquivo existe
   ansible.builtin.stat:
-    path: '{{path_to_downloads}}/gastecnologia/warsaw_setup64.deb'
+    path: '{{app.warsaw.download_path}}/{{app.warsaw.file}}'
   register: file_status
 
 - name: Baixa o arquivo
   ansible.builtin.get_url:
-    url: 'https://cloud.gastecnologia.com.br/bb/downloads/ws/warsaw_setup64.deb'
-    dest: '{{path_to_downloads}}/gastecnologia/warsaw_setup64.deb'
+    url: '{{app.warsaw.uri}}/{{app.warsaw.file}}'
+    dest: '{{app.warsaw.download_path}}/{{app.warsaw.file}}'
     decompress: false
     owner: '{{user.login}}'
     group: '{{user.group}}'
@@ -17,7 +17,7 @@
 
 - name: Instala o Warsaw
   ansible.builtin.apt: 
-    deb: '{{path_to_downloads}}/gastecnologia/warsaw_setup64.deb'
+    deb: '{{app.warsaw.download_path}}/{{app.warsaw.file}}'
   become: true
 
 ...

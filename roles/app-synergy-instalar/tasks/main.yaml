@@ -5,11 +5,11 @@
 
     - name: Verifica se o pacote existe
       ansible.builtin.stat:
-        path: '{{path_to_downloads}}/symless/synergy-linux_x64-libssl3-v3.0.73.7-rc2.deb'
+        path: '{{app.synergy.download_path}}/{{app.synergy.file}}'
       register: file_status
 
     - name: Instala se o pacote existir
-      ansible.builtin.apt: 'deb={{path_to_downloads}}/symless/synergy-linux_x64-libssl3-v3.0.73.7-rc2.deb'
+      ansible.builtin.apt: 'deb={{app.synergy.download_path}}/{{app.synergy.file}}'
       when: file_status.stat.exists
 
   become: true
